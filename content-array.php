@@ -53,10 +53,9 @@ woo_post_before();
         </tr>
           <?php endforeach; ?>
       </table>
+      
         <?php } //endif empty ?>
-      </div>
-      <?php
-      } //endif is_singular else
+      <?php } //endif is_singular else
       //wp_link_pages( $page_link_args );      
     ?>
 	</section><!-- /.entry -->
