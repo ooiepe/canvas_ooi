@@ -3,6 +3,16 @@
  * Array Content Template
  *
  */
+$settings = array(
+				'thumb_w' => 100,
+				'thumb_h' => 100,
+				'thumb_align' => 'alignleft',
+				'post_content' => 'excerpt',
+				'comments' => 'both'
+				);
+
+$settings = woo_get_dynamic_values( $settings );
+
 $title_before = '<h1 class="title entry-title">';
 $title_after = '</h1>';
 
@@ -20,7 +30,10 @@ $page_link_args = apply_filters( 'woothemes_pagelinks_args', array( 'before' => 
 woo_post_before();
 ?>
 <article <?php post_class(); ?>>
-  <?php woo_post_inside_before(); ?>
+  <?php woo_post_inside_before(); 
+    if ( 'content' != $settings['post_content'] && ! is_singular() )
+    	woo_image( 'width=' . esc_attr( $settings['thumb_w'] ) . '&height=' . esc_attr( $settings['thumb_h'] ) . '&class=thumbnail ' . esc_attr( $settings['thumb_align'] ) );    
+  ?>
   <header>
     <?php the_title( $title_before, $title_after ); ?>
   </header>
@@ -39,16 +52,25 @@ woo_post_before();
       
       <h3>Photos</h3>
       <?php  
-        $photos = get_post_meta( get_the_ID(), 'photos', false);
+        //$photos = get_post_meta( get_the_ID(), 'photos', false);
+        $photos = $pod->field('photos');
 
-        if ( ! empty( $photos ) ) {
-          foreach ( $photos as $photo ): ?>
+        if ( is_array( $photos ) ) {
+          //print_r($photos);
+          
+          foreach ( $photos as $photo ): 
+          $ids[]=$photo['ID'];
+          ?>
           <div class="fivecol-one">
-            <?php echo the_attachment_link($photo['ID'],false,'',true);?>
+            <?php //echo the_attachment_link($photo['ID'],false,'',true);?>
           </div>
           <?php endforeach; ?>
           <div class="clear"></div>
           <?php
+          echo gallery_shortcode( array( 
+            'include'=>implode(',',$ids),
+            'columns'=>4,
+          ) );
         } else {
           echo 'No photos';    
         }
@@ -101,13 +123,6 @@ woo_post_before();
       </div>
     </div>
     <div class="clear"></div>
-    
-    
-    <pre>
-    <div>Map: <?php print_r(get_post_meta( get_the_ID(), 'array_map', false)); ?></div>
-    <div>Photos: <?php print_r(get_post_meta( get_the_ID(), 'photos', false)); ?></div>
-
-
       
     <?php } //endif is_singular else
     //wp_link_pages( $page_link_args );      
