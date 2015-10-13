@@ -12,7 +12,7 @@
  */
 if (!function_exists('get_post_featured_image')) {
 	function get_post_featured_image($post_id, $size) {
-		$return_array = [];
+		$return_array = array();
 		$image_id = get_post_thumbnail_id($post_id);
 		$image = wp_get_attachment_image_src($image_id, $size);
 		$image_full = wp_get_attachment_image_src($image_id, 'full');
