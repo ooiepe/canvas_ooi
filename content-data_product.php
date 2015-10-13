@@ -36,7 +36,7 @@ woo_post_before();
   ?>
   <header>
     <?php //the_title( $title_before, $title_after ); ?>
-    <?php echo $title_before . get_post_meta( get_the_ID(), 'data_product_name', true) . $title_after; ?>
+    <?php echo $title_before . get_post_meta( get_the_ID(), 'data_product_name', true) . " <small>(" . get_the_title() . ")</small>" . $title_after; ?>
   </header>
   <?php //woo_post_meta(); ?>
 	<section class="entry">
@@ -51,11 +51,7 @@ woo_post_before();
     <div class="fourcol-three">
       <?php 
         if ( has_post_thumbnail() ) {
-          $image = get_post_featured_image(get_the_ID(),'medium');
-          echo sprintf( '<div style="width: 260px" class="wp-caption alignright"><a href="%s">%s</a><p class="wp-caption-text">%s</p></div>', 
-            $image['attachment_link'],
-            $image['img'],
-            $image['caption']);
+          echo ooi_image_caption(get_post_thumbnail_id(get_the_ID()),'medium');         
         }
       ?>
       <?php the_content( __( 'Continue Reading &rarr;', 'woothemes' ) ); ?>
@@ -66,7 +62,7 @@ woo_post_before();
         <?php echo get_post_meta( get_the_ID(), 'sampling_regime', true); ?></p></div>
 
       <h3>Instrument Classes</h3>
-      <p>The following instrument classes have this data product available.</p>
+      <p>The following instrument classes include this data product.</p>
       <?php
         $params = array( 'orderby'=>'post_title ASC', 'limit'=>-1); 
         $instruments = $pod->field('instrument_classes',$params);
@@ -79,7 +75,7 @@ woo_post_before();
           <td><?php echo sprintf( '<a href="%s">%s</a>', 
             esc_url(get_permalink($instrument['ID'])), 
             get_post_meta($instrument['ID'],'instrument_name',true) );?>
-          (<?php echo get_the_title($instrument['ID']);?>)</td>
+          <small>(<?php echo get_the_title($instrument['ID']);?>)</small></td>
           <td></td>
         </tr>
           <?php endforeach; ?>
@@ -87,21 +83,8 @@ woo_post_before();
       <?php } //endif empty ?>        
     </div>
     <div class="fourcol-one last">
-      <div>
-        <h3>OOI Data Products</h3>
-        <?php
-          $params = array( 'orderby'=>'data_product_name ASC', 'limit'=>-1); 
-          $products = pods('data_product',$params);
-          if ( ! empty( $products ) ): ?>
-          <ul>
-            <?php while ( $products->fetch() ): ?>
-            <li><?php echo sprintf( '<a href="%s">%s</a>', 
-            esc_url(get_permalink($products->id())), 
-            $products->display('data_product_name') );?></li>
-          <?php endwhile; ?>
-          </ul>
-          <?php endif; ?>
-      </div>
+      <p><a href="/data-products">View all Data Products &gt;&gt;</a></p>
+      <p><a href="/instruments">View all Instruments &gt;&gt;</a></p>
     </div>
     <div class="clear"></div>
       

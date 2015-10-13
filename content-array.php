@@ -50,29 +50,16 @@ woo_post_before();
     <div class="fourcol-three">
       <?php the_content( __( 'Continue Reading &rarr;', 'woothemes' ) );    ?> 
       
-      <h3>Photos</h3>
+      <h3>Array Diagrams</h3>
       <?php  
-        //$photos = get_post_meta( get_the_ID(), 'photos', false);
         $photos = $pod->field('photos');
 
         if ( is_array( $photos ) ) {
-          //print_r($photos);
-          
-          foreach ( $photos as $photo ): 
-          $ids[]=$photo['ID'];
-          ?>
-          <div class="fivecol-one">
-            <?php //echo the_attachment_link($photo['ID'],false,'',true);?>
-          </div>
-          <?php endforeach; ?>
-          <div class="clear"></div>
-          <?php
-          echo gallery_shortcode( array( 
-            'include'=>implode(',',$ids),
-            'columns'=>4,
-          ) );
+          foreach ( $photos as $photo ) {
+            echo ooi_image( $photo['ID'], 'large');
+          }        
         } else {
-          echo 'No photos';    
+          echo 'No Diagrams';    
         }
       ?>       
       <h3>Sites</h3>
@@ -83,11 +70,12 @@ woo_post_before();
         if ( ! empty( $sites ) ) {
         ?>
       <table>
-        <tr><th>Site Name</th><th>Water Depth</th></tr>
+        <tr><th>Key</th><th>Site Name</th><th>Water Depth</th></tr>
           <?php foreach ( $sites as $site ): ?>
         <tr>
+          <td><?php echo get_post_meta($site['ID'],'legend_key',true);?></td>
           <td><?php echo sprintf( '<a href="%s">%s</a>', esc_url(get_permalink($site['ID'])), get_post_meta($site['ID'],'site_name',true) );?>
-          (<?php echo get_the_title($site['ID']);?>)</td>
+          <small>(<?php echo get_the_title($site['ID']);?>)</small></td>
           <td><?php 
             $depth = get_post_meta($site['ID'],'depth',true);
             if ($depth) echo $depth;?></td>
@@ -97,11 +85,10 @@ woo_post_before();
       <?php } //endif empty ?>        
     </div>
     <div class="fourcol-one last">
-      <div><strong>Array Map</strong>
-        <?php  echo sprintf( '<a href="%s">%s</a>', 
-          get_post_meta( get_the_ID(), 'array_map._src.full', true), 
-          get_post_meta( get_the_ID(), 'array_map._img.medium', true) );
-        ?></div>
+      <div>
+        <strong><?php echo get_the_title(); ?> Array Map</strong>
+        <?php echo ooi_image( get_post_meta( get_the_ID(), 'array_map.ID', true), 'medium');?>
+      </div>
       <div><p><strong>Approximate Water Depth</strong><br>
         <?php echo get_post_meta( get_the_ID(), 'depth', true); ?></p></div>
       <div><p><strong>Central Mooring Location</strong><br>

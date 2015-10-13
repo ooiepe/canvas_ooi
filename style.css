@@ -25,6 +25,11 @@ Template: canvas
   display: none;
 }
 
+small {
+  font-size: 75%;
+  color: #999999;
+}
+
 /**
  * 6.5 Gallery from WP twentyfourteen
  * -----------------------------------------------------------------------------

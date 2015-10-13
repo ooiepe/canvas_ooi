@@ -33,4 +33,48 @@ if (!function_exists('get_post_featured_image')) {
 	}
 }
 
+
+if (!function_exists('ooi_image')) {
+	function ooi_image($image_id, $size) {
+    $image = wp_get_attachment_image($image_id, $size);
+		$image_full = wp_get_attachment_image_src($image_id, 'full');
+		$image_full_url = $image_full[0];
+    return sprintf( '<a href="%s">%s</a>', $image_full_url, $image );
+	}
+}
+
+
+if (!function_exists('ooi_gallery')) {
+	function ooi_gallery($photos) {
+    if ( is_array( $photos ) ) {
+      foreach ( $photos as $photo ) {
+        $ids[]=$photo['ID'];
+      }
+      $output = gallery_shortcode( array( 
+        'include'=>implode(',',$ids),
+        'columns'=>4
+      ) );
+    } else {
+      $output = 'No photos';    
+    }
+  	return $output;  	
+	}
+}
+
+
+if (!function_exists('ooi_image_caption')) {
+	function ooi_image_caption($image_id, $size) {
+    $image = wp_get_attachment_image($image_id, $size);
+		$image_full = wp_get_attachment_image_src($image_id, 'full');
+		$image_full_url = $image_full[0];
+		$image_post = get_post($image_id);
+		$image_caption = $image_post->post_excerpt;
+    return sprintf( '<div style="width: 260px" class="wp-caption alignright"><a href="%s">%s</a><p class="wp-caption-text">%s</p></div>', 
+      $image_full_url,
+      $image,
+      $image_caption);
+	}
+}
+
+
 ?>

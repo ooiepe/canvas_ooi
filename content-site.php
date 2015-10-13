@@ -36,7 +36,7 @@ woo_post_before();
   ?>
   <header>
     <?php //the_title( $title_before, $title_after ); ?>
-    <?php echo $title_before . get_post_meta( get_the_ID(), 'site_name', true) . $title_after; ?>
+    <?php echo $title_before . get_post_meta( get_the_ID(), 'array.post_title', true) . " " . get_post_meta( get_the_ID(), 'site_name', true) . " <small>(" . get_the_title() . ")</small>" . $title_after; ?>
   </header>
   <?php //woo_post_meta(); ?>
 	<section class="entry">
@@ -51,22 +51,12 @@ woo_post_before();
     <div class="fourcol-three">
       <?php the_content( __( 'Continue Reading &rarr;', 'woothemes' ) );    ?> 
       
-      <h3>Photos</h3>
+      <h3>Deployment Photos</h3>
       <?php  
         $photos = $pod->field('photos');
-
-        if ( is_array( $photos ) ) {
-          foreach ( $photos as $photo ) {
-            $ids[]=$photo['ID'];
-          }
-          echo gallery_shortcode( array( 
-            'include'=>implode(',',$ids),
-            'columns'=>4
-          ) );
-        } else {
-          echo 'No photos';    
-        }
+        echo ooi_gallery($photos);
       ?>       
+
       <h3>Instruments</h3>
       <p>This site includes following instruments.</p>
       <?php
@@ -75,28 +65,34 @@ woo_post_before();
         if ( ! empty( $instruments ) ) {
       ?>
       <table>
-        <tr><th>Ref Des</th><th>Class Code</th><th>Depth</th><th>Name</th><th>Location</th></tr>
+        <tr><th>Instrument</th><th>Depth</th><th>Location</th><th width="70px"></th></tr>
         <?php while ( $instruments->fetch() ) {  ?>
         <tr>
-          <td><?php echo $instruments->display('name');?></td>
-          <td><?php echo $instruments->display('instrument_class');?></td>
-          <td><?php echo $instruments->display('depth');?></td>
           <td><?php echo sprintf( '<a href="%s">%s</a>', 
             esc_url(get_permalink($instruments->display('instrument_class.ID'))), 
-            $instruments->display('instrument_class.instrument_name') );?></td>
+            $instruments->display('instrument_class.instrument_name') );?>
+             <small>(<?php echo $instruments->display('instrument_class');?>)</small></td>
+          <td><?php echo $instruments->display('depth');?></td>
           <td><?php echo $instruments->display('instrument_location') ;?></td>
+          <td>
+            <a href="https://ui.ooi.rutgers.edu/plotting/#<?php echo $instruments->display('name');?>" target="_blank" title="Plotting">
+              <span class="dashicons dashicons-chart-line"></span></a>
+            <a href="https://ui.ooi.rutgers.edu/streams/#<?php echo $instruments->display('name');?>" target="_blank" title="Data Catalog">
+              <span class="dashicons dashicons-book-alt"></span></a>
+            <a href="https://ui.ooi.rutgers.edu/assets/list/#<?php echo $instruments->display('name');?>" target="_blank" title="Asset Management">
+              <span class="dashicons dashicons-tag"></span></a>
+            </td>
         </tr>
           <?php } // end while ?>
       </table>
         <?php } //endif empty ?>
     </div>
     <div class="fourcol-one last">
-      <div><strong>Site Diagram</strong>
-        <?php  echo sprintf( '<a href="%s">%s</a>', 
-          get_post_meta( get_the_ID(), 'site_diagram._src.full', true), 
-          get_post_meta( get_the_ID(), 'site_diagram._img.medium', true) );
-        ?></div>
-      <div><p><strong>Array</strong><br>
+      <div>
+        <strong>Site Diagram</strong>
+        <?php echo ooi_image( get_post_meta( get_the_ID(), 'site_diagram.ID', true), 'medium');?>
+      </div>
+      <div><p><strong>Parent Array</strong><br>
         <?php echo sprintf( '<a href="%s">%s</a>', 
             esc_url(get_permalink($pod->display('array.ID'))), 
             $pod->display('array') );?></p></div>
