@@ -12,6 +12,7 @@ Template: canvas
 .breadcrumb-title {
   display: none;
 }
+
 .home .breadcrumb {
   display: none;
 }
@@ -20,6 +21,9 @@ Template: canvas
   float: right;
 }
 
+.nocomments {
+  display: none;
+}
 
 /**
  * 6.5 Gallery from WP twentyfourteen
