@@ -8,6 +8,7 @@ Template: canvas
 */
 
 @import url("../canvas/style.css");
+@import url('font-awesome/css/font-awesome.min.css');
 
 .breadcrumb-title {
   display: none;

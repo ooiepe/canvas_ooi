@@ -65,7 +65,7 @@ woo_post_before();
         if ( ! empty( $instruments ) ) {
       ?>
       <table>
-        <tr><th>Instrument</th><th>Depth</th><th>Location</th><th width="70px"></th></tr>
+        <tr><th>Instrument</th><th>Design Depth</th><th>Location</th><th width="70px">Actions</th></tr>
         <?php while ( $instruments->fetch() ) {  ?>
         <tr>
           <td><?php echo sprintf( '<a href="%s">%s</a>', 
@@ -76,11 +76,11 @@ woo_post_before();
           <td><?php echo $instruments->display('instrument_location') ;?></td>
           <td>
             <a href="https://ui.ooi.rutgers.edu/plotting/#<?php echo $instruments->display('name');?>" target="_blank" title="Plotting">
-              <span class="dashicons dashicons-chart-line"></span></a>
+              <i class="fa fa-bar-chart fa-lg"></i></a>
             <a href="https://ui.ooi.rutgers.edu/streams/#<?php echo $instruments->display('name');?>" target="_blank" title="Data Catalog">
-              <span class="dashicons dashicons-book-alt"></span></a>
+              <i class="fa fa-database fa-lg"></i></a>
             <a href="https://ui.ooi.rutgers.edu/assets/list/#<?php echo $instruments->display('name');?>" target="_blank" title="Asset Management">
-              <span class="dashicons dashicons-tag"></span></a>
+              <i class="fa fa-sitemap fa-lg"></i></a>
             </td>
         </tr>
           <?php } // end while ?>
@@ -88,14 +88,15 @@ woo_post_before();
         <?php } //endif empty ?>
     </div>
     <div class="fourcol-one last">
-      <div>
-        <strong>Site Diagram</strong>
-        <?php echo ooi_image( get_post_meta( get_the_ID(), 'site_diagram.ID', true), 'medium');?>
-      </div>
       <div><p><strong>Parent Array</strong><br>
         <?php echo sprintf( '<a href="%s">%s</a>', 
             esc_url(get_permalink($pod->display('array.ID'))), 
-            $pod->display('array') );?></p></div>
+            $pod->display('array') );?></p>
+      </div>
+      <div>
+        <p><strong>Site Diagram</strong>
+        <?php echo ooi_image( get_post_meta( get_the_ID(), 'site_diagram.ID', true), 'medium');?></p>
+      </div>
       <div><p><strong>Water Depth</strong><br>
         <?php echo $pod->display('depth'); ?></p></div>
       <div><p><strong>Site Location</strong><br>

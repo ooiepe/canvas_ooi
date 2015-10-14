@@ -86,8 +86,8 @@ woo_post_before();
     </div>
     <div class="fourcol-one last">
       <div>
-        <strong><?php echo get_the_title(); ?> Array Map</strong>
-        <?php echo ooi_image( get_post_meta( get_the_ID(), 'array_map.ID', true), 'medium');?>
+        <p><strong><?php echo get_the_title(); ?> Array Map</strong>
+        <?php echo ooi_image( get_post_meta( get_the_ID(), 'array_map.ID', true), 'medium');?></p>
       </div>
       <div><p><strong>Approximate Water Depth</strong><br>
         <?php echo get_post_meta( get_the_ID(), 'depth', true); ?></p></div>
