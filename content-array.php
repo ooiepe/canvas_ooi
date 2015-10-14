@@ -97,16 +97,18 @@ woo_post_before();
       <div><p><strong>Research Setting</strong><br>
         <?php echo get_post_meta( get_the_ID(), 'setting', true); ?></p></div>
       <div><strong>Research Themes</strong>
-        <ul>
         <?php 
         $themes = $pod->field('science_themes');
         if ( ! empty( $themes ) ) {
+          echo "<ul>";
           foreach ( $themes as $theme ) {
             echo sprintf( '<li><a href="%s">%s</a></li>', esc_url(get_permalink($theme['ID'])), $theme['post_title'] );
           }
+          echo "</ul>";
+        } else {
+          echo "<p>No themes selected.</p>";
         } 
         ?>
-        </ul>
       </div>
     </div>
     <div class="clear"></div>

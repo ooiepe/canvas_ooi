@@ -62,29 +62,30 @@ woo_post_before();
         <?php echo get_post_meta( get_the_ID(), 'sampling_regime', true); ?></p></div>
 
       <h3>Instrument Classes</h3>
-      <p>The following instrument classes include this data product.</p>
+      <p>The following instrument classes include this data product:</p>
       <?php
         $params = array( 'orderby'=>'post_title ASC', 'limit'=>-1); 
         $instruments = $pod->field('instrument_classes',$params);
         if ( ! empty( $instruments ) ) {
         ?>
-      <table>
-        <tr><th>Instrument Class</th><th></th></tr>
+      <ul>
           <?php foreach ($instruments as $instrument) : ?>
-        <tr>
-          <td><?php echo sprintf( '<a href="%s">%s</a>', 
+          <li><?php echo sprintf( '<a href="%s">%s</a>', 
             esc_url(get_permalink($instrument['ID'])), 
             get_post_meta($instrument['ID'],'instrument_name',true) );?>
-          <small>(<?php echo get_the_title($instrument['ID']);?>)</small></td>
-          <td></td>
-        </tr>
+          <small>(<?php echo get_the_title($instrument['ID']);?>)</small></li>
           <?php endforeach; ?>
-      </table>
-      <?php } //endif empty ?>        
+      </ul>
+      <?php 
+        } else {
+          echo "<p>No instruments.</p>";
+        } //endif empty ?>
     </div>
     <div class="fourcol-one last">
-      <p><a href="/data-products">View all Data Products &gt;&gt;</a></p>
-      <p><a href="/instruments">View all Instruments &gt;&gt;</a></p>
+      <p>
+        <a href="/data-products" class="woo-sc-button custom">Data Product List &gt;&gt;</a>
+        <a href="/instruments"  class="woo-sc-button custom">Instrument List &gt;&gt;</a>
+      </p>
     </div>
     <div class="clear"></div>
       
