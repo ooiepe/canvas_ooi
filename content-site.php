@@ -58,21 +58,30 @@ woo_post_before();
       ?>       
 
       <h3>Instruments</h3>
-      <p>This site includes following instruments.</p>
+      <p>This site includes following instruments.  To learn more about an instrument, select its name on the left; to access data for an instrument, select an icon on the right.</p>
       <?php
         $params = array( 'orderby'=>'name ASC', 'limit'=>-1, 'where'=>'site.post_title="'. $pod->display('name')  . '"'); 
         $instruments = pods('instrument', $params);
         if ( ! empty( $instruments ) ) {
       ?>
       <table>
-        <tr><th>Instrument</th><th>Design Depth</th><th>Location</th><th width="70px">Actions</th></tr>
+        <tr><th>Instrument</th><th>Design Depth</th><th>Location</th><th width="70px">Access Data</th></tr>
         <?php while ( $instruments->fetch() ) {  ?>
         <tr>
           <td><?php echo sprintf( '<a href="%s">%s</a>', 
             esc_url(get_permalink($instruments->display('instrument_class.ID'))), 
             $instruments->display('instrument_class.instrument_name') );?>
              <small>(<?php echo $instruments->display('instrument_class');?>)</small></td>
-          <td><?php echo $instruments->display('depth');?></td>
+          <td>
+            <?php 
+              $mindepth = $instruments->display('min_depth');
+              $maxdepth = $instruments->display('max_depth');
+              if ($mindepth == $maxdepth) {
+                echo $mindepth . 'm';
+              } else {
+                echo $mindepth . ' to ' . $maxdepth . 'm';
+              }
+            ?></td>
           <td><?php echo $instruments->display('instrument_location') ;?></td>
           <td>
             <a href="https://ui.ooi.rutgers.edu/plotting/#<?php echo $instruments->display('name');?>" target="_blank" title="Plotting">

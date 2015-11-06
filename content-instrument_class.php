@@ -57,7 +57,7 @@ woo_post_before();
         $data_products = $pod->field('data_products',$params);
         if ( ! empty( $data_products ) ) {
         ?>
-      <p>This instrument records the following data products:</p>
+      <p>This instrument records the following data products.  To learn more about a data product, select its name.</p>
       <ul>
         <?php foreach ($data_products as $data_product) : ?>
         <li><?php echo sprintf( '<a href="%s">%s</a>', 
@@ -80,7 +80,7 @@ woo_post_before();
         $instruments = pods('instrument', $params);
         if ( ! empty( $instruments ) ) {
       ?>
-      <p>This instrument is used at the following sites.</p>
+      <p>This instrument is used at the following sites.  Select a site to access data for this instrument at that site.</p>
       <table>
         <tr><th>Array and Site Name</th><th style="text-align:center;">Instrument Count</th></tr>
         <?php while ( $instruments->fetch() ) {  ?>
