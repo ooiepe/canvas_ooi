@@ -10,6 +10,7 @@ Template: canvas
 @import url("../canvas/style.css");
 @import url('font-awesome/css/font-awesome.min.css');
 
+/* Canvas Tweaks */
 .breadcrumb-title {
   display: none;
 }
@@ -26,10 +27,27 @@ Template: canvas
   display: none;
 }
 
+/* General Tweaks */
 small {
   font-size: 75%;
   color: #999999;
 }
+
+.home #navigation {
+  margin-bottom: 0;
+}
+
+
+/* List Category Posts Tweaks */
+.lcp_single { clear: both; margin-bottom: 20px;}
+.lcp_thumbnail { 
+  float: left; 
+  margin-right: 10px; 
+}
+.lcp_content { overflow: hidden; }
+.lcp_excerpt_home { display: inline; }
+.lcp_excerpt_home::before { content: ' - '; }
+/* .lcp_catlist li{ list-style: none; } */
 
 /**
  * 6.5 Gallery from WP twentyfourteen
