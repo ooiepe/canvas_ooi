@@ -51,19 +51,23 @@ woo_post_before();
     <div class="fourcol-three">
       <?php the_content( __( 'Continue Reading &rarr;', 'woothemes' ) );    ?> 
       
-      <h3>Deployment Photos</h3>
       <?php  
         $photos = $pod->field('photos');
+        if (is_array($photos)) { ?>
+      <h3>Deployment Photos</h3>
+        <?php
         echo ooi_gallery($photos);
-      ?>       
+        };
+      ?>
 
-      <h3>Instruments</h3>
-      <p>This site includes following instruments.  To learn more about an instrument, select its name on the left; to access data for an instrument, select an icon on the right.</p>
       <?php
         $params = array( 'orderby'=>'name ASC', 'limit'=>-1, 'where'=>'site.post_title="'. $pod->display('name')  . '"'); 
         $instruments = pods('instrument', $params);
-        if ( ! empty( $instruments ) ) {
+        //if ( ! empty( $instruments ) ) {
+        if ( $instruments->total() > 0 ) {
       ?>
+      <h3>Instruments</h3>
+      <p>This site includes following instruments.  To learn more about an instrument, select its name on the left; to access data for an instrument, select an icon on the right.</p>
       <table>
         <tr><th>Instrument</th><th>Design Depth</th><th>Location</th><th width="70px">Access Data</th></tr>
         <?php while ( $instruments->fetch() ) {  ?>
