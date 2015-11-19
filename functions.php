@@ -6,7 +6,7 @@
 /**
  * Finds featured image for the post specified by $post_id and returns all the properties for the desired $size
  * @param  int $post_id [id of the post whose featured image we would like to view]
- * @param  string/array $size [size of the image, parameter is identical to the one specified for <code>wp_get_attachmment_image_src</code> <http://codex.wordpress.org/Function_Reference/wp_get_attachment_image_src> ]
+ * @param  string/array $size [size of the image, parameter is identical to the one specified for wp_get_attachmment_image_src ]
  * @return array [returns an array with following key value pairs: id, url, alt, caption, description]
  * Adapted from https://gist.github.com/makbeta/5210410
  */
@@ -33,7 +33,10 @@ if (!function_exists('get_post_featured_image')) {
 	}
 }
 
-
+/**
+ * ooi_image
+ * Outputs and image wrapped in a link to the full size version
+ */
 if (!function_exists('ooi_image')) {
 	function ooi_image($image_id, $size) {
     $image = wp_get_attachment_image($image_id, $size);
@@ -44,6 +47,10 @@ if (!function_exists('ooi_image')) {
 }
 
 
+/**
+ * ooi_image
+ * Outputs the array of photos in a Wordpress Gallery shortcode
+ */
 if (!function_exists('ooi_gallery')) {
 	function ooi_gallery($photos) {
     if ( is_array( $photos ) ) {
@@ -62,6 +69,11 @@ if (!function_exists('ooi_gallery')) {
 }
 
 
+/**
+ * ooi_image_caption
+ * Outputs and image wrapped in a link to the full size version all inside 
+ *   a div container that incldes the caption
+ */
 if (!function_exists('ooi_image_caption')) {
 	function ooi_image_caption($image_id, $size) {
     $image = wp_get_attachment_image($image_id, $size);
@@ -76,7 +88,7 @@ if (!function_exists('ooi_image_caption')) {
 	}
 }
 
-
+// Remove comments on all attachment post types
 function filter_media_comment_status( $open, $post_id ) {
 	$post = get_post( $post_id );
 	if( $post->post_type == 'attachment' ) {
