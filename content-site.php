@@ -69,7 +69,7 @@ woo_post_before();
       <h3>Instruments</h3>
       <p>This site includes following instruments.  To learn more about an instrument, select its name on the left; to access data for an instrument, select an icon on the right.</p>
       <table>
-        <tr><th>Instrument</th><th>Design Depth</th><th>Location</th><th width="70px">Access Data</th></tr>
+        <tr><th>Instrument</th><th>Design Depth</th><th>Location</th><th style="text-align:center;">Access Data</th></tr>
         <?php while ( $instruments->fetch() ) {  ?>
         <tr>
           <td><?php echo sprintf( '<a href="%s">%s</a>', 
@@ -87,13 +87,17 @@ woo_post_before();
               }
             ?></td>
           <td><?php echo $instruments->display('instrument_location') ;?></td>
-          <td>
+          <td style="text-align:center;">
+<!--
             <a href="https://ui.ooi.rutgers.edu/plotting/#<?php echo $instruments->display('name');?>" target="_blank" title="Plotting">
               <i class="fa fa-bar-chart fa-lg"></i></a>
+-->
             <a href="https://ui.ooi.rutgers.edu/streams/#<?php echo $instruments->display('name');?>" target="_blank" title="Data Catalog">
               <i class="fa fa-database fa-lg"></i></a>
+<!--
             <a href="https://ui.ooi.rutgers.edu/assets/list/#<?php echo $instruments->display('name');?>" target="_blank" title="Asset Management">
               <i class="fa fa-sitemap fa-lg"></i></a>
+-->
             </td>
         </tr>
           <?php } // end while ?>

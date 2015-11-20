@@ -47,10 +47,10 @@ get_header();
 ?>
       <p><?php echo $authors;?> (<?php echo $year;?>). <strong><?php echo $title;?></strong>. <?php echo $source;?>.
         <?php if ($url) { ?>
-        <a href="<?php echo esc_url( $url); ?>" rel="bookmark"><i class="fa fa-external-link"> Web</i></a>
+        <a href="<?php echo esc_url( $url); ?>" rel="bookmark" target="_blank" title="Publication Link"><i class="fa fa-external-link"> Web</i></a>
         <?php } ?> 
         <?php if ($pdf) { ?>
-        <a href="<?php echo esc_url( $pdf); ?>" rel="bookmark"><i class="fa fa-file-pdf-o"> PDF</i></a>
+        <a href="<?php echo esc_url( $pdf); ?>" rel="bookmark" target="_blank" title="PDF Link"><i class="fa fa-file-pdf-o"> PDF</i></a>
         <?php } ?>
       </p>
 
