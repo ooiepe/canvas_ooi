@@ -69,18 +69,18 @@ if ( 'content' == $settings['post_content'] || is_singular() ) wp_link_pages( $p
 <div class="event-well">
   <h3>Event Details</h3>
   <dl>
-    <dt><strong>Date and Time</strong></dt>
+    <dt>Date and Time</dt>
     <dd><?php echo $datestr?></dd>
   </dl>
   <?php if ($venue):?>
   <dl>
-    <dt><strong>Venue</strong></dt>
+    <dt>Venue</dt>
     <dd><?php echo $venue?></dd>
   </dl>
   <?php endif; ?>
   <?php if ($location):?>
   <dl>
-    <dt><strong>Location</strong></dt>
+    <dt>Location</dt>
     <dd><?php echo $location?></dd>
   </dl>
   <?php endif; ?>

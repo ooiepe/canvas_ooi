@@ -61,7 +61,35 @@ small {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05)
 }
 
+.event-well dt {
+  font-weight: bold;
+}
+.event-well dl {
+  margin-bottom: .5em;
+}
 
+/* Publications */
+#publication-list p {
+  padding-left: 2em; 
+  margin-bottom: 1em;
+} 
+
+#publication-list p:first-letter {
+  margin-left: -2em;
+}
+
+/* Staff Profile */
+.profile img {
+  margin: 0 15px 5px 0;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	box-shadow: 2px 2px 8px rgba(0, 0, 0, .8);
+	-webkit-box-shadow: 2px 2px 8px rgba(0, 0, 0, .8);
+	-moz-box-shadow: 2px 2px 8px rgba(0, 0, 0, .8);
+}
 
 /**
  * 6.5 Gallery from WP twentyfourteen
