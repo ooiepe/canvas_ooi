@@ -48,11 +48,8 @@ $page_template = woo_get_page_template();
 </div>
 <div class="fourcol-one last">
   <div style="background-color: #ffeebf; padding: .5em; border-radius: 6px; box-shadow: 0px 1px 5px rgba(0,0,0,.1);">
-  <h4>Information for Mariners</h4>
-  <p>Learn more about the location of OOI system assets, including moorings and undersea nodes, and other important notices for mariners. Please see <a href="/notice-to-mariners/">Information for Mariners</a></p>
-  
-  <h4>Upcoming Events</h4>
-  <p><strong>2015 AGU Fall Meeting</strong><br>
+  <h3>Upcoming Events</h3>
+  <p><strong><a href="http://main.oceanobservatories.org/event/2015-agu-town-hall/">2015 AGU Fall Meeting</a></strong><br>
   Dec 14-18, San Francisco, CA</p>
   
   <p><strong>2016 Ocean Sciences Meeting</strong><br>
@@ -66,17 +63,17 @@ $page_template = woo_get_page_template();
 
 <div style="background-color: #cfe1e5; padding: 1em 2em 0em 2em; border-radius: 12px; box-shadow: 0px 1px 5px rgba(0,0,0,.1);">
   <div class="threecol-one">
-    <a href="/data-portal/"><img class="alignnone size-full wp-image-9079" src="http://ooi.marine.rutgers.edu/wp-content/uploads/2010/05/homepage_data.jpg" alt="OOI Data Portal" width="280" height="200" /></a>
+    <a href="/data-portal/"><img class="alignnone size-full wp-image-9079" src="/wp-content/uploads/2010/05/homepage_data.jpg" alt="OOI Data Portal" width="280" height="200" /></a>
     <h3><a href="/data-portal/">Data Portal</a></h3>
     <p>Access data from the the OOI arrays.</p>
   </div>
   <div class="threecol-one">
-    <a href="/educators/ocean-education-portal/"><img class="alignnone size-full wp-image-9084" src="http://ooi.marine.rutgers.edu/wp-content/uploads/2010/05/homepage_students.jpg" alt="OOI Ocean Education Portal" width="280" height="200" /></a>
+    <a href="/educators/ocean-education-portal/"><img class="alignnone size-full wp-image-9084" src="/wp-content/uploads/2010/05/homepage_students.jpg" alt="OOI Ocean Education Portal" width="280" height="200" /></a>
     <h3><a href="/educators/ocean-education-portal/">Education Portal</a></h3>
     <p>Find and create educational visualizations, concept maps, and data investigations.</p>
   </div>
   <div class="threecol-one last">
-    <a href="/researchers/"><img class="alignnone size-full wp-image-9081" src="http://ooi.marine.rutgers.edu/wp-content/uploads/2010/05/homepage_researchers.jpg" alt="Information for Researchers and Proposal Writers" width="280" height="200" /></a>
+    <a href="/researchers/"><img class="alignnone size-full wp-image-9081" src="/wp-content/uploads/2010/05/homepage_researchers.jpg" alt="Information for Researchers and Proposal Writers" width="280" height="200" /></a>
     <h3><a href="/researchers/">Information for Researchers</a></h3>
     <p>Guidance for proposal writers and data users.</p>
   </div>
