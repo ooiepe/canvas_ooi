@@ -89,13 +89,13 @@ woo_post_before();
           <td><?php echo $instruments->display('instrument_location') ;?></td>
           <td style="text-align:center;">
 <!--
-            <a href="https://ui.ooi.rutgers.edu/plotting/#<?php echo $instruments->display('name');?>" target="_blank" title="Plotting">
+            <a href="https://ooinet.oceanobservatories.org/plotting/#<?php echo $instruments->display('name');?>" target="_blank" title="Plotting">
               <i class="fa fa-bar-chart fa-lg"></i></a>
 -->
-            <a href="https://ui.ooi.rutgers.edu/streams/#<?php echo $instruments->display('name');?>" target="_blank" title="Data Catalog">
+            <a href="https://ooinet.oceanobservatories.org/streams/#<?php echo $instruments->display('name');?>" target="_blank" title="Data Catalog">
               <i class="fa fa-database fa-lg"></i></a>
 <!--
-            <a href="https://ui.ooi.rutgers.edu/assets/list/#<?php echo $instruments->display('name');?>" target="_blank" title="Asset Management">
+            <a href="https://ooinet.oceanobservatories.org/assets/list/#<?php echo $instruments->display('name');?>" target="_blank" title="Asset Management">
               <i class="fa fa-sitemap fa-lg"></i></a>
 -->
             </td>
