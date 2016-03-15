@@ -69,7 +69,7 @@ woo_post_before();
       <h3>Instruments</h3>
       <p>This site includes following instruments.  To learn more about an instrument, select its name on the left; to access data for an instrument, select an icon on the right.</p>
       <table>
-        <tr><th>Instrument</th><th>Design Depth</th><th>Location</th><th style="text-align:center;">Access Data</th></tr>
+        <tr><th>Instrument</th><th>Design Depth</th><th>Location</th><th style="text-align:center;"><!-- Access Data --></th></tr>
         <?php while ( $instruments->fetch() ) {  ?>
         <tr>
           <td><?php echo sprintf( '<a href="%s">%s</a>', 
@@ -91,10 +91,8 @@ woo_post_before();
 <!--
             <a href="https://ooinet.oceanobservatories.org/plotting/#<?php echo $instruments->display('name');?>" target="_blank" title="Plotting">
               <i class="fa fa-bar-chart fa-lg"></i></a>
--->
             <a href="https://ooinet.oceanobservatories.org/streams/#<?php echo $instruments->display('name');?>" target="_blank" title="Data Catalog">
               <i class="fa fa-database fa-lg"></i></a>
-<!--
             <a href="https://ooinet.oceanobservatories.org/assets/list/#<?php echo $instruments->display('name');?>" target="_blank" title="Asset Management">
               <i class="fa fa-sitemap fa-lg"></i></a>
 -->

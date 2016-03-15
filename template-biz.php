@@ -47,17 +47,20 @@ $page_template = woo_get_page_template();
   <?php echo do_shortcode('[catlist name=news thumbnail=yes thumbnail_class=lcp_thumbnail thumbnail_size=250,250 numberposts=3 date=yes excerpt=yes template=homepage]');?>
 </div>
 <div class="fourcol-one last">
-  <div style="background-color: #ffeebf; padding: .5em; border-radius: 6px; box-shadow: 0px 1px 5px rgba(0,0,0,.1);">
+  <div style="background-color: #ffeebf; padding: .5em; border-radius: 6px; box-shadow: 0px 1px 5px rgba(0,0,0,.1); margin-bottom: 12px;">
   <h3>Upcoming Events</h3>
-  <p><strong><a href="http://main.oceanobservatories.org/event/2015-agu-town-hall/">2015 AGU Fall Meeting</a></strong><br>
-  Dec 14-18, San Francisco, CA</p>
   
-  <p><strong>2016 Ocean Sciences Meeting</strong><br>
+  <p><strong><a href="http://oceanobservatories.org/event/2016-ocean-sciences-meeting/">2016 Ocean Sciences Meeting</a></strong><br>
   February 21-26, New Orleans, LA</p>
+
+  <p><strong><a href="http://oceanobservatories.org/staff-consultations/">Coastal & Global Array Overview Webinar</a></strong><br>
+  March 3, Online</p>
   
   <p align="right"><a href="/events/">More Events</a></p>
   </div>
+
 </div>
+
 
 <div class="clear"></div>
 
