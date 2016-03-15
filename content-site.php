@@ -87,14 +87,29 @@ woo_post_before();
         <p><strong>Site Diagram</strong><br>
         <?php echo ooi_image( get_post_meta( get_the_ID(), 'site_diagram.ID', true), 'medium');?></p>
       </div>
-      <div><p><strong>Water Depth</strong><br>
-        <?php echo $pod->display('depth'); ?></p></div>
-      <div><p><strong>Site Location</strong><br>
-        <?php echo $pod->display('latitude'); ?>, 
-        <?php echo $pod->display('longitude'); ?></p></div>
-      <?php if ( ! empty( $instruments ) ) { ?>
+      <?php 
+        $depth = get_post_meta( get_the_ID(), 'depth', true);
+        $latitude = get_post_meta( get_the_ID(), 'latitude', true);
+        $longitude = get_post_meta( get_the_ID(), 'longitude', true);
+        $technical_resources = get_post_meta( get_the_ID(), 'technical_resources', true);
+      ?>
+      <?php if ($depth) { ?>
+        <div><p><strong>Water Depth</strong><br>
+          <?php echo number_format($depth); ?> meters</p>
+        </div>
+      <?php } ?>
+      <?php if (abs($latitude)) { ?>
+        <div><p><strong>Site Location</strong><br>
+          <?php
+            echo sprintf("%s&deg;%s", abs($latitude), $latitude>0 ? 'N' : 'S');
+            echo ", ";
+            echo sprintf("%s&deg;%s", abs($longitude), $longitude>0 ? 'E' : 'W');
+          ?> 
+        </p></div>
+      <?php } ?>
+      <?php if ($technical_resources) { ?>
         <div><p><strong>Technical Resources</strong><br>
-          <?php echo get_post_meta( get_the_ID(), 'technical_resources', true); ?></p></div>
+          <?php echo $technical_resources; ?></p></div>
       <?php } ?>
     </div>
     <div class="clear"></div>
@@ -108,7 +123,7 @@ woo_post_before();
       <h3>Instruments</h3>
       <p>This site includes following instruments.  To learn more about an instrument type, select its name on the left. To access data for an instrument, select the icon on the right.</p>
       <table>
-        <tr><th>Instrument</th><th>Design Depth</th><th>Location</th><th>Manufacturer<br>Make/Model</th><th style="text-align:center;"><!-- Access Data --></th></tr>
+        <tr><th>Instrument</th><th>Design Depth</th><th>Location</th><th>Manufacturer - Make/Model</th><th style="text-align:center;"><!-- Access Data --></th></tr>
         <?php while ( $instruments->fetch() ) {  ?>
         <tr>
           <td><?php echo sprintf( '<a href="%s">%s</a>', 
@@ -121,14 +136,13 @@ woo_post_before();
               $mindepth = $instruments->display('min_depth');
               $maxdepth = $instruments->display('max_depth');
               if ($mindepth == $maxdepth) {
-                echo $mindepth . 'm';
+                echo number_format($mindepth) . 'm';
               } else {
-                echo $mindepth . ' to ' . $maxdepth . 'm';
+                echo number_format($mindepth) . ' to ' . number_format($maxdepth) . ' meters';
               }
             ?></td>
           <td><?php echo $instruments->display('instrument_location') ;?></td>
-          <td><?php echo $instruments->display('manufacturer') ;?><br>
-              <?php echo $instruments->display('make_model') ;?></td>
+          <td><?php echo $instruments->display('manufacturer') ;?> - <?php echo $instruments->display('make_model') ;?></td>
           <td style="text-align:center;">
 <!--
             <a href="https://ooinet.oceanobservatories.org/plotting/#<?php echo $instruments->display('name');?>" target="_blank" title="Plotting">

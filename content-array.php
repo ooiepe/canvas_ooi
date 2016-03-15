@@ -76,9 +76,9 @@ woo_post_before();
           <td><?php echo get_post_meta($site['ID'],'legend_key',true);?></td>
           <td><?php echo sprintf( '<a href="%s">%s</a>', esc_url(get_permalink($site['ID'])), get_post_meta($site['ID'],'site_name',true) );?>
           <small>(<?php echo get_the_title($site['ID']);?>)</small></td>
-          <td><?php 
+          <td style="text-align:right"><?php 
             $depth = get_post_meta($site['ID'],'depth',true);
-            if ($depth) echo $depth;?></td>
+            if ($depth) echo number_format($depth) . ' meters';?></td>
         </tr>
           <?php endforeach; ?>
       </table>
