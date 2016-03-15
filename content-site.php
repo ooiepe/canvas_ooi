@@ -59,23 +59,63 @@ woo_post_before();
         echo ooi_gallery($photos);
         };
       ?>
+      
+      <?php 
+      // Science Themes
+      $themes = $pod->field('science_themes');
+      if ( ! empty( $themes ) ) {
+        echo "<div><strong>Research Themes</strong>";
+        echo "<ul>";
+        foreach ( $themes as $theme ) {
+          echo sprintf( '<li><a href="%s">%s</a></li>', esc_url(get_permalink($theme['ID'])), $theme['post_title'] );
+        }
+        echo "</ul>";
+        echo "</div>";
+      } else {
+        echo ""; //<p>No themes selected.</p>
+      } 
+      ?>
+
+    </div>
+    <div class="fourcol-one last">
+      <div><p><strong>Parent Array</strong><br>
+        <?php echo sprintf( '<a href="%s">%s</a>', 
+            esc_url(get_permalink($pod->display('array.ID'))), 
+            $pod->display('array') );?></p>
+      </div>
+      <div>
+        <p><strong>Site Diagram</strong><br>
+        <?php echo ooi_image( get_post_meta( get_the_ID(), 'site_diagram.ID', true), 'medium');?></p>
+      </div>
+      <div><p><strong>Water Depth</strong><br>
+        <?php echo $pod->display('depth'); ?></p></div>
+      <div><p><strong>Site Location</strong><br>
+        <?php echo $pod->display('latitude'); ?>, 
+        <?php echo $pod->display('longitude'); ?></p></div>
+      <?php if ( ! empty( $instruments ) ) { ?>
+        <div><p><strong>Technical Resources</strong><br>
+          <?php echo get_post_meta( get_the_ID(), 'technical_resources', true); ?></p></div>
+      <?php } ?>
+    </div>
+    <div class="clear"></div>
+
 
       <?php
         $params = array( 'orderby'=>'name ASC', 'limit'=>-1, 'where'=>'site.post_title="'. $pod->display('name')  . '"'); 
         $instruments = pods('instrument', $params);
-        //if ( ! empty( $instruments ) ) {
         if ( $instruments->total() > 0 ) {
       ?>
       <h3>Instruments</h3>
-      <p>This site includes following instruments.  To learn more about an instrument, select its name on the left; to access data for an instrument, select an icon on the right.</p>
+      <p>This site includes following instruments.  To learn more about an instrument type, select its name on the left. To access data for an instrument, select the icon on the right.</p>
       <table>
-        <tr><th>Instrument</th><th>Design Depth</th><th>Location</th><th style="text-align:center;"><!-- Access Data --></th></tr>
+        <tr><th>Instrument</th><th>Design Depth</th><th>Location</th><th>Manufacturer<br>Make/Model</th><th style="text-align:center;"><!-- Access Data --></th></tr>
         <?php while ( $instruments->fetch() ) {  ?>
         <tr>
           <td><?php echo sprintf( '<a href="%s">%s</a>', 
             esc_url(get_permalink($instruments->display('instrument_class.ID'))), 
             $instruments->display('instrument_class.instrument_name') );?>
-             <small>(<?php echo $instruments->display('instrument_class');?>)</small></td>
+             <small>(<?php echo $instruments->display('instrument_class');?>)</small><br>
+             <small><?php echo $instruments->display('name');?></small></td>
           <td>
             <?php 
               $mindepth = $instruments->display('min_depth');
@@ -87,12 +127,16 @@ woo_post_before();
               }
             ?></td>
           <td><?php echo $instruments->display('instrument_location') ;?></td>
+          <td><?php echo $instruments->display('manufacturer') ;?><br>
+              <?php echo $instruments->display('make_model') ;?></td>
           <td style="text-align:center;">
 <!--
             <a href="https://ooinet.oceanobservatories.org/plotting/#<?php echo $instruments->display('name');?>" target="_blank" title="Plotting">
               <i class="fa fa-bar-chart fa-lg"></i></a>
+-->
             <a href="https://ooinet.oceanobservatories.org/streams/#<?php echo $instruments->display('name');?>" target="_blank" title="Data Catalog">
               <i class="fa fa-database fa-lg"></i></a>
+<!--
             <a href="https://ooinet.oceanobservatories.org/assets/list/#<?php echo $instruments->display('name');?>" target="_blank" title="Asset Management">
               <i class="fa fa-sitemap fa-lg"></i></a>
 -->
@@ -101,40 +145,7 @@ woo_post_before();
           <?php } // end while ?>
       </table>
         <?php } //endif empty ?>
-    </div>
-    <div class="fourcol-one last">
-      <div><p><strong>Parent Array</strong><br>
-        <?php echo sprintf( '<a href="%s">%s</a>', 
-            esc_url(get_permalink($pod->display('array.ID'))), 
-            $pod->display('array') );?></p>
-      </div>
-      <div>
-        <p><strong>Site Diagram</strong>
-        <?php echo ooi_image( get_post_meta( get_the_ID(), 'site_diagram.ID', true), 'medium');?></p>
-      </div>
-      <div><p><strong>Water Depth</strong><br>
-        <?php echo $pod->display('depth'); ?></p></div>
-      <div><p><strong>Site Location</strong><br>
-        <?php echo $pod->display('latitude'); ?>, 
-        <?php echo $pod->display('longitude'); ?></p></div>
-      <div><strong>Research Themes</strong>
-        <?php 
-        $themes = $pod->field('science_themes');
-        if ( ! empty( $themes ) ) {
-          echo "<ul>";
-          foreach ( $themes as $theme ) {
-            echo sprintf( '<li><a href="%s">%s</a></li>', esc_url(get_permalink($theme['ID'])), $theme['post_title'] );
-          }
-          echo "</ul>";
-        } else {
-          echo "<p>No themes selected.</p>";
-        } 
-        ?>
-      </div>
-      <div><p><strong>Technical Resources</strong><br>
-        <?php echo get_post_meta( get_the_ID(), 'technical_resources', true); ?></p></div>
-    </div>
-    <div class="clear"></div>
+
       
     <?php } //endif is_singular else
     //wp_link_pages( $page_link_args );      
