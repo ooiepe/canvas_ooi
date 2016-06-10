@@ -91,6 +91,27 @@ small {
 	-moz-box-shadow: 2px 2px 8px rgba(0, 0, 0, .8);
 }
 
+
+/* Collapse-O-Matic Tweak */
+.collapseomatic {
+	display: block;
+}
+.collapseomatic_content {
+	margin-bottom: 1em;
+	font-style: italic;
+}
+
+/* Homepage Canvas Slider */
+#wrapper #loopedSlider.business-slider .content {
+  width: 60% !important;
+  top: inherit !important;
+  bottom: 0 !important;
+}
+
+
+
+
+
 /**
  * 6.5 Gallery from WP twentyfourteen
  * -----------------------------------------------------------------------------
@@ -217,3 +238,4 @@ small {
 .gallery-columns-9 .gallery-caption {
 	display: none;
 }
+
