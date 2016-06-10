@@ -47,16 +47,19 @@ $page_template = woo_get_page_template();
   <?php echo do_shortcode('[catlist name=news thumbnail=yes thumbnail_class=lcp_thumbnail thumbnail_size=250,250 numberposts=3 date=yes excerpt=yes template=homepage]');?>
 </div>
 <div class="fourcol-one last">
-  <div style="background-color: #ffeebf; padding: .5em; border-radius: 6px; box-shadow: 0px 1px 5px rgba(0,0,0,.1); margin-bottom: 12px;">
-  <h3>Upcoming Events</h3>
   
-  <p><strong><a href="http://oceanobservatories.org/event/2016-ocean-sciences-meeting/">2016 Ocean Sciences Meeting</a></strong><br>
-  February 21-26, New Orleans, LA</p>
+  <div>
+    <a href="/streaming-underwater-video/"><img src="http://oceanobservatories.org/wp-content/uploads/2016/01/ooi_axial_vid_thumb_v1.jpg" title="Live Video from Axial Seamount" width="220" height="124"></a>
+  </div>
 
-  <p><strong><a href="http://oceanobservatories.org/staff-consultations/">Coastal & Global Array Overview Webinar</a></strong><br>
-  March 3, Online</p>
-  
-  <p align="right"><a href="/events/">More Events</a></p>
+  <div style="background-color: #ffeebf; padding: .5em; border-radius: 6px; box-shadow: 0px 1px 5px rgba(0,0,0,.1); margin: 12px 0 12px 0;">
+    <h5>Recent Page Updates</h5>
+    <ul>
+      <li><a href="/data/raw-data/">Raw Data Archive Manual</a> 5/26</li>  
+      <li><a href="/usage-policy/">Data Usage Policy</a> with updated citation guidance 5/26</li>  
+      <li><a href="/streaming-underwater-video/">Live Video from Axial Seamount</a> 4/22</li>  
+      <li><a href="/researchers/subject-matter-experts/">Evaluation/Validation of OOI Data and the Role of Subject Matter Experts</a> 4/12</li>
+    </ul>
   </div>
 
 </div>
