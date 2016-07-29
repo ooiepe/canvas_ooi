@@ -51,14 +51,23 @@ $page_template = woo_get_page_template();
   <div>
     <a href="/streaming-underwater-video/"><img src="http://oceanobservatories.org/wp-content/uploads/2016/01/ooi_axial_vid_thumb_v1.jpg" title="Live Video from Axial Seamount" width="220" height="124"></a>
   </div>
+  <div>
+    <a href="http://oceanobservatories.org/2016/07/visions16-cabled-array-maintenance-cruise-begins/"><img src="http://oceanobservatories.org/wp-content/uploads/2016/07/visions16-thumbnail.jpg" title="VISIONS'16" width="220" height="105"></a>
+  </div>
 
   <div style="background-color: #ffeebf; padding: .5em; border-radius: 6px; box-shadow: 0px 1px 5px rgba(0,0,0,.1); margin: 12px 0 12px 0;">
+    <h5>Upcoming Events</h5>
+    <ul>
+      <li><a href="/staff-consultations/">Cabled Array consultations</a> 7/6</li>  
+      <li><a href="/staff-consultations/">Coastal/Global webinar</a> 7/7 @ 1400 ET</li>  
+    </ul>
     <h5>Recent Page Updates</h5>
     <ul>
+      <li><a href="/staff-consultations/staff-consultations-cabled-array/">6/24 Cabled Array Webinar Recording</a></li>  
+      <li><a href="/researchers/subject-matter-experts/sme-spring-summer-2016-evaluations/">Subject Matter Volunteers</a> 6/28</li>  
       <li><a href="/data/raw-data/">Raw Data Archive Manual</a> 5/26</li>  
       <li><a href="/usage-policy/">Data Usage Policy</a> with updated citation guidance 5/26</li>  
       <li><a href="/streaming-underwater-video/">Live Video from Axial Seamount</a> 4/22</li>  
-      <li><a href="/researchers/subject-matter-experts/">Evaluation/Validation of OOI Data and the Role of Subject Matter Experts</a> 4/12</li>
     </ul>
   </div>
 
