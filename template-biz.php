@@ -58,16 +58,16 @@ $page_template = woo_get_page_template();
   <div style="background-color: #ffeebf; padding: .5em; border-radius: 6px; box-shadow: 0px 1px 5px rgba(0,0,0,.1); margin: 12px 0 12px 0;">
     <h5>Upcoming Events</h5>
     <ul>
-      <li><a href="/staff-consultations/">Cabled Array consultations</a> 7/6</li>  
-      <li><a href="/staff-consultations/">Coastal/Global webinar</a> 7/7 @ 1400 ET</li>  
+      <li><a href="/2016/07/ooi-community-workshop-cabled-endurance-and-station-papa/">Cabled, Endurance, & Station Papa Community Workshop</a> Sept. 27-29</li>  
     </ul>
     <h5>Recent Page Updates</h5>
     <ul>
-      <li><a href="/staff-consultations/staff-consultations-cabled-array/">6/24 Cabled Array Webinar Recording</a></li>  
+      <li><a href="/community-resources/">Community Resources</a> 7/29</li>
+      <li><a href="/staff-consultations/staff-consultations-coastal-and-global-arrays/">Coastal/Global Array Webinar Recording</a> 7/7</li>
       <li><a href="/researchers/subject-matter-experts/sme-spring-summer-2016-evaluations/">Subject Matter Volunteers</a> 6/28</li>  
+      <li><a href="/staff-consultations/staff-consultations-cabled-array/">Cabled Array Webinar Recording</a> 6/24</li>  
       <li><a href="/data/raw-data/">Raw Data Archive Manual</a> 5/26</li>  
       <li><a href="/usage-policy/">Data Usage Policy</a> with updated citation guidance 5/26</li>  
-      <li><a href="/streaming-underwater-video/">Live Video from Axial Seamount</a> 4/22</li>  
     </ul>
   </div>
 
