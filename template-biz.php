@@ -66,8 +66,6 @@ $page_template = woo_get_page_template();
       <li><a href="/staff-consultations/staff-consultations-coastal-and-global-arrays/">Coastal/Global Array Webinar Recording</a> 7/7</li>
       <li><a href="/researchers/subject-matter-experts/sme-spring-summer-2016-evaluations/">Subject Matter Volunteers</a> 6/28</li>  
       <li><a href="/staff-consultations/staff-consultations-cabled-array/">Cabled Array Webinar Recording</a> 6/24</li>  
-      <li><a href="/data/raw-data/">Raw Data Archive Manual</a> 5/26</li>  
-      <li><a href="/usage-policy/">Data Usage Policy</a> with updated citation guidance 5/26</li>  
     </ul>
   </div>
 

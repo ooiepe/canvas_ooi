@@ -98,4 +98,15 @@ function filter_media_comment_status( $open, $post_id ) {
 }
 add_filter( 'comments_open', 'filter_media_comment_status', 10 , 2 );
 
+// Changes past event views to reverse chronological order
+function tribe_past_reverse_chronological ($post_object) {
+	$past_ajax = (defined( 'DOING_AJAX' ) && DOING_AJAX && $_REQUEST['tribe_event_display'] === 'past') ? true : false;
+	if(tribe_is_past() || $past_ajax) {
+		$post_object = array_reverse($post_object);
+	}
+	return $post_object;
+}
+add_filter('the_posts', 'tribe_past_reverse_chronological', 100);
+
+
 ?>
