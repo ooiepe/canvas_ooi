@@ -109,4 +109,11 @@ function tribe_past_reverse_chronological ($post_object) {
 add_filter('the_posts', 'tribe_past_reverse_chronological', 100);
 
 
+//Move Search bar to header 
+function woo_custom_add_searchform () {
+  get_search_form();
+} // End woo_custom_add_searchform()
+add_action ( 'woo_header_inside', 'woo_custom_add_searchform', 10 )
+
+
 ?>

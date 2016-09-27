@@ -109,6 +109,17 @@ small {
 }
 
 
+/* Searh Bar in the Header */
+.search_main {
+  position: absolute; 
+  width: 300px;
+  right: 10px;
+}
+.search_main .searchform {
+  background-color: #fff;
+}
+
+
 
 
 
