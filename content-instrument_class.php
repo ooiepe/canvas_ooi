@@ -26,6 +26,19 @@ if ( ! is_single() ) {
 
 $page_link_args = apply_filters( 'woothemes_pagelinks_args', array( 'before' => '<div class="page-link">' . __( 'Pages:', 'woothemes' ), 'after' => '</div>' ) );
 
+// Breadcrumb
+if ( is_singular() ) {
+?>
+  <div class="breadcrumb breadcrumbs woo-breadcrumbs">
+    <div class="breadcrumb-trail">
+      <a href="/instruments/" title="Instruments" rel="home" class="trail-begin">Instruments</a>
+      <span class="sep">›</span>
+      <span class="trail-end"><?=get_post_meta( get_the_ID(), 'display_name', true)?></span>
+    </div>
+  </div>
+<?php
+}
+
 // Start Generating Content
 woo_post_before();
 ?>
@@ -36,7 +49,8 @@ woo_post_before();
   ?>
   <header>
     <?php //the_title( $title_before, $title_after ); ?>
-    <?php echo $title_before . get_post_meta( get_the_ID(), 'instrument_name', true) . " <small>(" . get_the_title() . ")</small>" . $title_after; ?>
+    <?php //echo $title_before . get_post_meta( get_the_ID(), 'display_name', true) . " <small>(" . get_the_title() . ")</small>" . $title_after; ?>
+    <?php echo $title_before . get_post_meta( get_the_ID(), 'display_name', true) . $title_after; ?>
   </header>
   <?php //woo_post_meta(); ?>
 	<section class="entry">
@@ -71,35 +85,34 @@ woo_post_before();
           echo "<p>No data products</p>";
         } //endif empty ?>
 
-      <h3>OOI Sites</h3>
+
       <?php
-        $params = array( 'orderby'=>'name ASC', 'limit'=>-1, 
-          'groupby'=>'site.post_title',
-          'select'=>'t.*,count(site.post_title) as instrument_count',
-          'where'=>'instrument_class.post_title="'. $pod->display('name')  . '"'); 
-        $instruments = pods('instrument', $params);
-        if ( ! empty( $instruments ) ) {
+        $params = array( 'orderby'=>'display_name ASC', 'limit'=>-1, 'where'=>'instrument_class.post_title="'. $pod->display('name')  . '"'); 
+        $instrument_series = pods('instrument_series', $params);
+        if ( $instrument_series->total() > 0 ) {
       ?>
-      <p>This instrument is used at the following sites.  Select a site to access data for this instrument at that site.</p>
+      <h3>Instrument Models</h3>
+      <p>The OOI includes the following instrument models for this instrument type.</p>
       <table>
-        <tr><th>Array and Site Name</th><th style="text-align:center;">Instrument Count</th></tr>
-        <?php while ( $instruments->fetch() ) {  ?>
         <tr>
-          <td><?php echo sprintf( '<a href="%s">%s - %s</a>', 
-            esc_url(get_permalink($instruments->display('site.ID'))), 
-            $instruments->display('site.array'),
-            $instruments->display('site.site_name') );?>
-             <small>(<?php echo $instruments->display('site');?>)</small></td>
-          <td style="text-align:center;"><?php echo $instruments->display('instrument_count') ;?></td>
+          <th>Series</th>
+          <th>Make</th>
+          <th>Model</th>
+        </tr>
+        <?php while ( $instrument_series->fetch() ) {  ?>
+        <tr>
+          <td>
+            <?php echo sprintf( '<a href="%s">%s</a>', 
+            esc_url(get_permalink($instrument_series->display('ID'))), 
+            $instrument_series->display('name') );?></td>
+          <td><?php echo $instrument_series->display('make') ;?></td>
+          <td><?php echo $instrument_series->display('model') ;?></td>
         </tr>
           <?php } // end while ?>
       </table>
-      <?php 
-        } else {
-          echo "<p>No sites.</p>";
-        } //endif empty ?>        
-    </div>
+        <?php } //endif empty ?>
 
+    </div>
 
     <div class="fourcol-one last">
       <?php 
@@ -108,7 +121,7 @@ woo_post_before();
         }
       ?>
       <div>
-        <p><strong>Primary Science Dicipline</strong><br>
+        <p><strong>Primary Science Discipline</strong><br>
         <?php echo get_post_meta( get_the_ID(), 'primary_science_dicipline', true); ?></p>
       </div>
       <div>
@@ -122,14 +135,16 @@ woo_post_before();
           }
           echo "</ul>";
         } else {
-          echo "<p>No themes selected.</p>";
+          echo "<p>None</p>";
         } 
         ?>
       </div>
+<!--
       <p>
         <a href="/data-products" class="woo-sc-button custom">Data Product List &gt;&gt;</a>
         <a href="/instruments"  class="woo-sc-button custom">Instrument List &gt;&gt;</a>
       </p>
+-->
     </div>
     <div class="clear"></div>
       

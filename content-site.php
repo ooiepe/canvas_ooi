@@ -26,6 +26,21 @@ if ( ! is_single() ) {
 
 $page_link_args = apply_filters( 'woothemes_pagelinks_args', array( 'before' => '<div class="page-link">' . __( 'Pages:', 'woothemes' ), 'after' => '</div>' ) );
 
+// Breadcrumb
+if ( is_singular() ) {
+?>
+  <div class="breadcrumb breadcrumbs woo-breadcrumbs">
+    <div class="breadcrumb-trail">
+      <a href="/research-arrays/" title="OOI Research Arrays" rel="home" class="trail-begin">Research Arrays</a>
+      <span class="sep">›</span>
+      <a href="<?=get_post_meta( get_the_ID(), 'array.permalink', true)?>"><?=get_post_meta( get_the_ID(), 'array.post_title', true)?></a>
+      <span class="sep">›</span>
+      <span class="trail-end"><?=get_post_meta( get_the_ID(), 'site_name', true)?></span>
+    </div>
+  </div>
+<?php
+}
+
 // Start Generating Content
 woo_post_before();
 ?>
@@ -36,7 +51,8 @@ woo_post_before();
   ?>
   <header>
     <?php //the_title( $title_before, $title_after ); ?>
-    <?php echo $title_before . get_post_meta( get_the_ID(), 'array.post_title', true) . " " . get_post_meta( get_the_ID(), 'site_name', true) . " <small>(" . get_the_title() . ")</small>" . $title_after; ?>
+    <?php //echo $title_before . get_post_meta( get_the_ID(), 'array.post_title', true) . " " . get_post_meta( get_the_ID(), 'site_name', true) . " <small>(" . get_the_title() . ")</small>" . $title_after; ?>
+    <?php echo $title_before . get_post_meta( get_the_ID(), 'site_name', true) . " <small>(" . get_the_title() . ")</small>" . $title_after; ?>
   </header>
   <?php //woo_post_meta(); ?>
 	<section class="entry">
@@ -59,46 +75,26 @@ woo_post_before();
         echo ooi_gallery($photos);
         };
       ?>
-      
-      <?php 
-      // Science Themes
-      $themes = $pod->field('science_themes');
-      if ( ! empty( $themes ) ) {
-        echo "<div><strong>Research Themes</strong>";
-        echo "<ul>";
-        foreach ( $themes as $theme ) {
-          echo sprintf( '<li><a href="%s">%s</a></li>', esc_url(get_permalink($theme['ID'])), $theme['post_title'] );
-        }
-        echo "</ul>";
-        echo "</div>";
-      } else {
-        echo ""; //<p>No themes selected.</p>
-      } 
-      ?>
 
     </div>
     <div class="fourcol-one last">
-      <div><p><strong>Parent Array</strong><br>
-        <?php echo sprintf( '<a href="%s">%s</a>', 
-            esc_url(get_permalink($pod->display('array.ID'))), 
-            $pod->display('array') );?></p>
-      </div>
       <div>
         <p><strong>Site Diagram</strong><br>
         <?php echo ooi_image( get_post_meta( get_the_ID(), 'site_diagram.ID', true), 'medium');?></p>
       </div>
+      
       <?php 
         $depth = get_post_meta( get_the_ID(), 'depth', true);
-        $latitude = get_post_meta( get_the_ID(), 'latitude', true);
-        $longitude = get_post_meta( get_the_ID(), 'longitude', true);
-        $technical_resources = get_post_meta( get_the_ID(), 'technical_resources', true);
-      ?>
-      <?php if ($depth) { ?>
+        if ($depth) { ?>
         <div><p><strong>Water Depth</strong><br>
           <?php echo number_format($depth); ?> meters</p>
         </div>
       <?php } ?>
-      <?php if (abs($latitude)) { ?>
+      
+      <?php 
+        $latitude = get_post_meta( get_the_ID(), 'latitude', true);
+        $longitude = get_post_meta( get_the_ID(), 'longitude', true);
+        if (abs($latitude)) { ?>
         <div><p><strong>Site Location</strong><br>
           <?php
             echo sprintf("%s&deg;%s", abs($latitude), $latitude>0 ? 'N' : 'S');
@@ -107,54 +103,75 @@ woo_post_before();
           ?> 
         </p></div>
       <?php } ?>
-      <?php if ($technical_resources) { ?>
+
+      <div>
+        <?php 
+        $themes = $pod->field('science_themes');
+        if ( ! empty( $themes ) ) {
+          echo "<strong>Research Themes</strong>";
+          echo "<ul>";
+          foreach ( $themes as $theme ) {
+            echo sprintf( '<li><a href="%s">%s</a></li>', esc_url(get_permalink($theme['ID'])), $theme['post_title'] );
+          }
+          echo "</ul>";
+        } ?>
+      </div>
+
+      <?php 
+        $technical_resources = get_post_meta( get_the_ID(), 'technical_resources', true);
+        if ($technical_resources) { ?>
         <div><p><strong>Technical Resources</strong><br>
           <?php echo $technical_resources; ?></p></div>
       <?php } ?>
+
     </div>
     <div class="clear"></div>
 
 
       <?php
-        $params = array( 'orderby'=>'name ASC', 'limit'=>-1, 'where'=>'site.post_title="'. $pod->display('name')  . '"'); 
+        $params = array( 'orderby'=>'t.max_depth,t.instrument_name ASC', 'limit'=>-1, 'where'=>'site.post_title="'. $pod->display('name')  . '"'); 
         $instruments = pods('instrument', $params);
         if ( $instruments->total() > 0 ) {
       ?>
       <h3>Instruments</h3>
-      <p>This site includes following instruments.  To learn more about an instrument type, select its name on the left. To access data for an instrument, select the icon on the right.</p>
+      <p>This site includes following instruments.  To learn more about an instrument type, select its name on the left. To see the relevant data streams for a particular instrument, select the icon on the right which will take you to the OOI Data Portal.</p>
       <table>
-        <tr><th>Instrument</th><th>Design Depth</th><th>Location</th><th>Manufacturer - Make/Model</th><th style="text-align:center;"><!-- Access Data --></th></tr>
+        <tr>
+          <th>Instrument</th>
+          <th>Design Depth</th>
+          <th>Node</th>
+          <th>Make &amp; Model</th>
+          <th style="text-align:center;">Data<!-- Access Data --></th>
+        </tr>
         <?php while ( $instruments->fetch() ) {  ?>
         <tr>
-          <td><?php echo sprintf( '<a href="%s">%s</a>', 
-            esc_url(get_permalink($instruments->display('instrument_class.ID'))), 
-            $instruments->display('instrument_class.instrument_name') );?>
-             <small>(<?php echo $instruments->display('instrument_class');?>)</small><br>
+          <td>
+            <?php echo sprintf( '<a href="%s">%s</a>', 
+            esc_url(get_permalink($instruments->display('instrument_series.ID'))), 
+            $instruments->display('instrument_name') );?>
+             <small>(<?php echo $instruments->display('instrument_series');?>)</small><br>
              <small><?php echo $instruments->display('name');?></small></td>
           <td>
             <?php 
               $mindepth = $instruments->display('min_depth');
               $maxdepth = $instruments->display('max_depth');
               if ($mindepth == $maxdepth) {
-                echo number_format($mindepth) . 'm';
+                echo $mindepth . 'm';
               } else {
-                echo number_format($mindepth) . ' to ' . number_format($maxdepth) . ' meters';
+                echo $mindepth . ' to ' . $maxdepth . ' meters';
               }
             ?></td>
-          <td><?php echo $instruments->display('instrument_location') ;?></td>
-          <td><?php echo $instruments->display('manufacturer') ;?> - <?php echo $instruments->display('make_model') ;?></td>
+          <td><?php echo $instruments->display('node_name') ;?></td>
+          <td><?php echo $instruments->display('make') ;?> - <?php echo $instruments->display('model') ;?></td>
           <td style="text-align:center;">
-<!--
-            <a href="https://ooinet.oceanobservatories.org/plotting/#<?php echo $instruments->display('name');?>" target="_blank" title="Plotting">
-              <i class="fa fa-bar-chart fa-lg"></i></a>
--->
-            <a href="https://ooinet.oceanobservatories.org/streams/#<?php echo $instruments->display('name');?>" target="_blank" title="Data Catalog">
-              <i class="fa fa-database fa-lg"></i></a>
-<!--
-            <a href="https://ooinet.oceanobservatories.org/assets/list/#<?php echo $instruments->display('name');?>" target="_blank" title="Asset Management">
-              <i class="fa fa-sitemap fa-lg"></i></a>
--->
-            </td>
+            <?php
+              $rd = $instruments->display('name');
+              if (strpos($rd,'MOAS')) {
+                echo '<a href="https://ooinet.oceanobservatories.org/data_access/?search=' . substr($rd,0,10) . '%20' . substr($rd,18,5) . '" target="_blank" title="Data Catalog"><i class="fa fa-database fa-lg"></i></a>';
+              } else {
+                echo '<a href="https://ooinet.oceanobservatories.org/data_access/?search=' . $rd . '" target="_blank" title="Data Catalog"><i class="fa fa-database fa-lg"></i></a>';
+              }
+            ?></td>
         </tr>
           <?php } // end while ?>
       </table>

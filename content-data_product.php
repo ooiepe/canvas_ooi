@@ -72,7 +72,7 @@ woo_post_before();
           <?php foreach ($instruments as $instrument) : ?>
           <li><?php echo sprintf( '<a href="%s">%s</a>', 
             esc_url(get_permalink($instrument['ID'])), 
-            get_post_meta($instrument['ID'],'instrument_name',true) );?>
+            get_post_meta($instrument['ID'],'display_name',true) );?>
           <small>(<?php echo get_the_title($instrument['ID']);?>)</small></li>
           <?php endforeach; ?>
       </ul>
@@ -82,10 +82,12 @@ woo_post_before();
         } //endif empty ?>
     </div>
     <div class="fourcol-one last">
+<!--
       <p>
         <a href="/data-products" class="woo-sc-button custom">Data Product List &gt;&gt;</a>
         <a href="/instruments"  class="woo-sc-button custom">Instrument List &gt;&gt;</a>
       </p>
+-->
     </div>
     <div class="clear"></div>
       

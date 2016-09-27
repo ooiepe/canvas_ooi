@@ -26,6 +26,19 @@ if ( ! is_single() ) {
 
 $page_link_args = apply_filters( 'woothemes_pagelinks_args', array( 'before' => '<div class="page-link">' . __( 'Pages:', 'woothemes' ), 'after' => '</div>' ) );
 
+// Breadcrumb
+if ( is_singular() ) {
+?>
+  <div class="breadcrumb breadcrumbs woo-breadcrumbs">
+    <div class="breadcrumb-trail">
+      <a href="/research-arrays/" title="OOI Research Arrays" rel="home" class="trail-begin">Research Arrays</a>
+      <span class="sep">›</span>
+      <span class="trail-end"><?=get_the_title()?></span>
+    </div>
+  </div>
+<?php
+}
+
 // Start Generating Content
 woo_post_before();
 ?>
