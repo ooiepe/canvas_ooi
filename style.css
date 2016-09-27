@@ -101,6 +101,7 @@ small {
 	font-style: italic;
 }
 
+
 /* Homepage Canvas Slider */
 #wrapper #loopedSlider.business-slider .content {
   width: 60% !important;
@@ -120,6 +121,17 @@ small {
 }
 
 
+/* Widget Style */
+.widget {
+  background-color: #ffeebf; 
+  padding: .5em; 
+  border-radius: 6px; 
+  box-shadow: 0px 1px 5px rgba(0,0,0,.1); 
+  margin: 12px 0 12px 0;
+}
+.widget ul {
+  list-style-position: outside;
+}
 
 
 
@@ -249,4 +261,3 @@ small {
 .gallery-columns-9 .gallery-caption {
 	display: none;
 }
-

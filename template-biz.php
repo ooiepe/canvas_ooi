@@ -44,7 +44,7 @@ $page_template = woo_get_page_template();
 
 <div class="fourcol-three">
   <h3>OOI Updates</h3>
-  <?php echo do_shortcode('[catlist name=news thumbnail=yes thumbnail_class=lcp_thumbnail thumbnail_size=250,250 numberposts=3 date=yes excerpt=yes template=homepage]');?>
+  <?php echo do_shortcode('[catlist name=news thumbnail=yes thumbnail_class=lcp_thumbnail thumbnail_size=250,250 numberposts=5 date=yes excerpt=yes template=homepage]');?>
 </div>
 <div class="fourcol-one last">
   
@@ -55,19 +55,11 @@ $page_template = woo_get_page_template();
     <a href="http://oceanobservatories.org/2016/07/visions16-cabled-array-maintenance-cruise-begins/"><img src="http://oceanobservatories.org/wp-content/uploads/2016/07/visions16-thumbnail.jpg" title="VISIONS'16" width="220" height="105"></a>
   </div>
 
-  <div style="background-color: #ffeebf; padding: .5em; border-radius: 6px; box-shadow: 0px 1px 5px rgba(0,0,0,.1); margin: 12px 0 12px 0;">
-    <h5>Upcoming Events</h5>
-    <ul>
-      <li><a href="/2016/07/ooi-community-workshop-cabled-endurance-and-station-papa/">Cabled, Endurance, & Station Papa Community Workshop</a> Sept. 27-29</li>  
-    </ul>
-    <h5>Recent Page Updates</h5>
-    <ul>
-      <li><a href="/community-resources/">Community Resources</a> 7/29</li>
-      <li><a href="/staff-consultations/staff-consultations-coastal-and-global-arrays/">Coastal/Global Array Webinar Recording</a> 7/7</li>
-      <li><a href="/researchers/subject-matter-experts/sme-spring-summer-2016-evaluations/">Subject Matter Volunteers</a> 6/28</li>  
-      <li><a href="/staff-consultations/staff-consultations-cabled-array/">Cabled Array Webinar Recording</a> 6/24</li>  
-    </ul>
-  </div>
+	<?php	if ( is_active_sidebar( 'homepage' ) ) { ?>
+  <div id="widgets-container">
+    <?php dynamic_sidebar( 'homepage' ); ?>
+  </div><!--/#widgets-container-->
+  <?php }  ?>
 
 </div>
 
@@ -95,6 +87,7 @@ $page_template = woo_get_page_template();
 
 	</section>
 </article>
+
 
 
             </section><!-- /#main -->
