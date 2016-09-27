@@ -133,6 +133,10 @@ small {
   list-style-position: outside;
 }
 
+/* Override Canvas default columns margin of 4% */
+.twocol-one, .threecol-one, .threecol-two, .fourcol-one, .fourcol-two, .fourcol-three {
+  margin-bottom: 1% !important;
+}
 
 
 /**
