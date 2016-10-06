@@ -134,23 +134,25 @@ woo_post_before();
         if ( $instruments->total() > 0 ) {
       ?>
       <h3>Instruments</h3>
-      <p>This site includes following instruments.  To learn more about an instrument type, select its name on the left. To see the relevant data streams for a particular instrument, select the icon on the right which will take you to the OOI Data Portal.</p>
+      <p>This site includes following instruments.  To learn more about an instrument type, select its name on the left. To see the relevant data streams for a particular instrument, select the instrument code in the first column which will take you to the OOI Data Portal.</p>
       <table>
         <tr>
           <th>Instrument</th>
-          <th>Design Depth</th>
+          <th>Depth</th>
           <th>Node</th>
+          <th>Instrument Series</th>
           <th>Make &amp; Model</th>
-          <th style="text-align:center;">Data<!-- Access Data --></th>
         </tr>
         <?php while ( $instruments->fetch() ) {  ?>
         <tr>
-          <td>
-            <?php echo sprintf( '<a href="%s">%s</a>', 
-            esc_url(get_permalink($instruments->display('instrument_series.ID'))), 
-            $instruments->display('instrument_name') );?>
-             <small>(<?php echo $instruments->display('instrument_series');?>)</small><br>
-             <small><?php echo $instruments->display('name');?></small></td>
+          <td><?php
+              $rd = $instruments->display('name');
+              if (strpos($rd,'MOAS')) {
+                echo '<a href="https://ooinet.oceanobservatories.org/data_access/?search=' . substr($rd,0,10) . '%20' . substr($rd,18,5) . '" target="_blank" title="Data Catalog">' . $instruments->display('name') . '</a>'; //<i class="fa fa-database"></i>
+              } else {
+                echo '<a href="https://ooinet.oceanobservatories.org/data_access/?search=' . $rd . '" target="_blank" title="Data Catalog">' . $instruments->display('name') . '</a>';
+              }
+            ?></td>
           <td>
             <?php 
               $mindepth = $instruments->display('min_depth');
@@ -162,16 +164,12 @@ woo_post_before();
               }
             ?></td>
           <td><?php echo $instruments->display('node_name') ;?></td>
+          <td>
+            <?php echo sprintf( '<a href="%s">%s</a>', 
+            esc_url(get_permalink($instruments->display('instrument_series.ID'))), 
+            $instruments->display('instrument_name') );?>
+             <small>(<?php echo $instruments->display('instrument_series');?>)</small></td>
           <td><?php echo $instruments->display('make') ;?> - <?php echo $instruments->display('model') ;?></td>
-          <td style="text-align:center;">
-            <?php
-              $rd = $instruments->display('name');
-              if (strpos($rd,'MOAS')) {
-                echo '<a href="https://ooinet.oceanobservatories.org/data_access/?search=' . substr($rd,0,10) . '%20' . substr($rd,18,5) . '" target="_blank" title="Data Catalog"><i class="fa fa-database fa-lg"></i></a>';
-              } else {
-                echo '<a href="https://ooinet.oceanobservatories.org/data_access/?search=' . $rd . '" target="_blank" title="Data Catalog"><i class="fa fa-database fa-lg"></i></a>';
-              }
-            ?></td>
         </tr>
           <?php } // end while ?>
       </table>

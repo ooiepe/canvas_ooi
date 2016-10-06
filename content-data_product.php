@@ -56,11 +56,6 @@ woo_post_before();
       ?>
       <?php the_content( __( 'Continue Reading &rarr;', 'woothemes' ) ); ?>
       
-      <div><p><strong>Typical Units</strong><br>
-        <?php echo get_post_meta( get_the_ID(), 'typical_units', true); ?></p></div>
-      <div><p><strong>Sampling Regime</strong><br>
-        <?php echo get_post_meta( get_the_ID(), 'sampling_regime', true); ?></p></div>
-
       <h3>Instrument Classes</h3>
       <p>The following instrument classes include this data product:</p>
       <?php
@@ -82,6 +77,11 @@ woo_post_before();
         } //endif empty ?>
     </div>
     <div class="fourcol-one last">
+      <div><p><strong>Typical Units</strong><br>
+        <?php echo get_post_meta( get_the_ID(), 'typical_units', true); ?></p></div>
+      <div><p><strong>Sampling Regime</strong><br>
+        <?php echo get_post_meta( get_the_ID(), 'sampling_regime', true); ?></p></div>
+
 <!--
       <p>
         <a href="/data-products" class="woo-sc-button custom">Data Product List &gt;&gt;</a>

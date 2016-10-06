@@ -48,9 +48,11 @@ $page_template = woo_get_page_template();
 </div>
 <div class="fourcol-one last">
   
+<!--
   <div>
     <a href="/streaming-underwater-video/"><img src="http://oceanobservatories.org/wp-content/uploads/2016/01/ooi_axial_vid_thumb_v1.jpg" title="Live Video from Axial Seamount" width="220" height="124"></a>
   </div>
+-->
   <div>
     <a href="http://oceanobservatories.org/2016/07/visions16-cabled-array-maintenance-cruise-begins/"><img src="http://oceanobservatories.org/wp-content/uploads/2016/07/visions16-thumbnail.jpg" title="VISIONS'16" width="220" height="105"></a>
   </div>
