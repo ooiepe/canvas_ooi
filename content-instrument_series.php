@@ -63,34 +63,25 @@ woo_post_before();
       // Single Entry
       $pod = pods('instrument_series',get_the_ID());
     ?>
-    <div class="fourcol-three">
+    <div class="threecol-two">
       <p>
         <strong>Make: </strong> <?php echo $pod->display('make')?><br>
         <strong>Model: </strong> <?php echo $pod->display('model')?>
       </p>
+      <?php 
+        $dps = get_post_meta( get_the_ID(), 'description', true);
+        if ($dps) { ?>
+        <div>
+        <?php echo $dps; ?>
+        </div>
+      <?php } ?>
       
       <?php the_content( __( 'Continue Reading &rarr;', 'woothemes' ) ); ?>
-
-      <?php 
-        $dps = get_post_meta( get_the_ID(), 'data_product_specifications', true);
-        if ($dps) { ?>
-        <div><p><strong>Data Product Specifications</strong></p>
-          <?php echo $dps; ?>
-        </div>
-      <?php } ?>
-
-      <?php 
-        $additional_references = get_post_meta( get_the_ID(), 'additional_references', true);
-        if ($additional_references) { ?>
-        <div><p><strong>Additional References</strong></p>
-          <?php echo $additional_references; ?>
-        </div>
-      <?php } ?>
 
     </div>
 
 
-    <div class="fourcol-one last">
+    <div class="threecol-one last">
       <?php 
         if ( has_post_thumbnail() ) {
           echo ooi_image_caption(get_post_thumbnail_id(get_the_ID()),'medium');         
