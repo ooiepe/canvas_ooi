@@ -10,7 +10,9 @@ Template: canvas
 @import url("../canvas/style.css");
 @import url('font-awesome/css/font-awesome.min.css');
 
-/* Canvas Tweaks */
+/**
+ * Canvas Tweaks 
+ */
 .breadcrumb-title {
   display: none;
 }
@@ -27,7 +29,9 @@ Template: canvas
   display: none;
 }
 
-/* General Tweaks */
+/**
+ * General Tweaks 
+ */
 small {
   font-size: 75%;
   color: #999999;
@@ -38,7 +42,9 @@ small {
 }
 
 
-/* List Category Posts Tweaks */
+/**
+ * List Category Posts Tweaks 
+ */
 .lcp_single { clear: both; margin-bottom: 20px;}
 .lcp_thumbnail { 
   float: left; 
@@ -49,7 +55,9 @@ small {
 .lcp_excerpt_home::before { content: ' - '; }
 /* .lcp_catlist li{ list-style: none; } */
 
-/* Event Well */
+/**
+ * Event Well 
+ */
 .event-well {
   min-height: 20px;
   padding: 19px;
@@ -68,7 +76,9 @@ small {
   margin-bottom: .5em;
 }
 
-/* Publications */
+/** 
+ * Publications 
+ */
 #publication-list p {
   padding-left: 2em; 
   margin-bottom: 1em;
@@ -78,7 +88,9 @@ small {
   margin-left: -2em;
 }
 
-/* Staff Profile */
+/**
+ * Staff Profile 
+ */
 .profile img {
   margin: 0 15px 5px 0;
   padding: 0;
@@ -92,7 +104,9 @@ small {
 }
 
 
-/* Collapse-O-Matic Tweak */
+/**
+ * Collapse-O-Matic Tweaks
+ */
 .collapseomatic {
 	display: block;
 }
@@ -102,7 +116,9 @@ small {
 }
 
 
-/* Homepage Canvas Slider */
+/**
+ * Homepage Canvas Slider
+ */
 #wrapper #loopedSlider.business-slider .content {
   width: 60% !important;
   top: inherit !important;
@@ -110,7 +126,9 @@ small {
 }
 
 
-/* Searh Bar in the Header */
+/** 
+ * Searh Bar in the Header
+ */
 .search_main {
   position: absolute; 
   width: 300px;
@@ -121,7 +139,9 @@ small {
 }
 
 
-/* Widget Style */
+/** 
+ * Widget Style 
+ */
 .widget {
   background-color: #ffeebf; 
   padding: .5em; 
@@ -133,11 +153,71 @@ small {
   list-style-position: outside;
 }
 
-/* Override Canvas default columns margin of 4% */
+/** 
+ * Override default Canvas columns margin-bottom  of 4% 
+ */
 .twocol-one, .threecol-one, .threecol-two, .fourcol-one, .fourcol-two, .fourcol-three {
   margin-bottom: 1% !important;
 }
 
+/**
+ * WP Knowledgebase Tweaks 
+ */
+
+#kbe_content .kbe_leftcol p {
+  font: 300 15px/1.5em Arial, sans-serif;
+  color: #555555;
+  margin: 0 0 1.2em;
+}
+
+#kbe_content .kbe_leftcol ul {
+  margin: 0 0 15px 0;
+  padding: 0 0 0 30px;
+}
+
+#kbe_content .kbe_leftcol ul li, ol {
+  font: 300 15px/1.5em Arial, sans-serif;
+  color: #555555;
+}
+
+#kbe_content .kbe_leftcol a {
+  color: #007ea3;
+}
+
+#kbe_container h1 {
+  font: bold 28px/1.1em Arial, sans-serif;
+  color: #222222;
+  margin: 0 0 0.5em;
+}
+
+#kbe_content .kbe_leftcol h2 {
+  font: bold 24px/1.2em Arial, sans-serif;
+  color: #222222;
+  margin: 0 0 0.5em;
+  padding: 0;
+}
+
+#kbe_content .kbe_leftcol h3 {
+  font: bold 20px/1.2em Arial, sans-serif;
+  color: #222222;
+  margin: 0 0 0.5em;
+  padding: 0;
+}
+
+#kbe_container table, #kbe_container table th, #kbe_container table tr, #kbe_container table td {
+  padding: .5em 1em;
+  font: 300 15px/1.5em Arial, sans-serif;
+  color: #555555;
+}
+
+.kbe_search_field {
+  margin: 0 0 1.5em;
+  width: 65%;
+}
+
+.kbe_breadcrum {
+  margin: 0 0 1.5em;
+}
 
 /**
  * 6.5 Gallery from WP twentyfourteen
