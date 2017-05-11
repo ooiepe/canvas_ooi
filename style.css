@@ -170,12 +170,12 @@ small {
   margin: 0 0 1.2em;
 }
 
-#kbe_content .kbe_leftcol ul {
+#kbe_content .kbe_leftcol ul, #kbe_content .kbe_leftcol ol {
   margin: 0 0 15px 0;
   padding: 0 0 0 30px;
 }
 
-#kbe_content .kbe_leftcol ul li, ol {
+#kbe_content .kbe_leftcol ul li, #kbe_content .kbe_leftcol ol li {
   font: 300 15px/1.5em Arial, sans-serif;
   color: #555555;
 }
