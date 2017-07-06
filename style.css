@@ -219,6 +219,10 @@ small {
   margin: 0 0 1.5em;
 }
 
+#kbe_content .kbe_leftcol .wp-caption-text {
+  font-style: italic;
+}
+
 /**
  * 6.5 Gallery from WP twentyfourteen
  * -----------------------------------------------------------------------------
