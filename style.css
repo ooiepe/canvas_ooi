@@ -224,6 +224,15 @@ small {
 }
 
 /**
+ * The Event Calendar Tweaks 
+ */
+#tribe-events-content {
+/*   padding: 0 2.5em; */
+  margin-left: 2.5em;
+  margin-right: 2.5em;
+}
+
+/**
  * 6.5 Gallery from WP twentyfourteen
  * -----------------------------------------------------------------------------
  */
