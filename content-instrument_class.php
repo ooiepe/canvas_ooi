@@ -62,7 +62,7 @@ woo_post_before();
       // Single Entry
       $pod = pods('instrument_class',get_the_ID());
     ?>
-    <div class="fourcol-three">
+    <div class="threecol-two">
       <?php the_content( __( 'Continue Reading &rarr;', 'woothemes' ) ); ?>
       
       <h3>Data Products</h3>
@@ -71,13 +71,22 @@ woo_post_before();
         $data_products = $pod->field('data_products',$params);
         if ( ! empty( $data_products ) ) {
         ?>
-      <p>This instrument records the following data products.  To learn more about a data product, select its name.</p>
+      <p>This instrument measures the following data products.  Select a data product's name to learn more.</p>
       <ul>
         <?php foreach ($data_products as $data_product) : ?>
-        <li><?php echo sprintf( '<a href="%s">%s</a>', 
-          esc_url(get_permalink($data_product['ID'])), 
-          get_post_meta($data_product['ID'],'data_product_name',true) );?>
-        <small>(<?php echo get_the_title($data_product['ID']);?>)</small></li>
+        <li>
+          <?php echo sprintf( '<a href="%s">%s</a>', 
+            esc_url(get_permalink($data_product['ID'])), 
+            get_post_meta($data_product['ID'],'data_product_name',true) );?>
+          <small>(<?php echo get_the_title($data_product['ID']);?>)</small>
+          <?php 
+            $dps = get_post_meta( $data_product['ID'], 'dps', true);
+            if (is_array($dps)) {
+              echo sprintf( 
+                '<small><a href="%s">DPS <i class="fa fa-file-pdf-o" aria-hidden="true"></i></a></small>',
+                esc_url(wp_get_attachment_url($dps['ID'])) );
+            } ?>
+        </li>
         <?php endforeach; ?>
       </ul>
       <?php 
@@ -85,6 +94,9 @@ woo_post_before();
           echo "<p>No data products</p>";
         } //endif empty ?>
 
+      <?php if ($pod->field('ion_functions_link')) { ?>
+      <p>The algorithm code used to generate this instrument's data products is also available in the <a href="<?php echo $pod->display('ion_functions_link')?>">ion-functions GitHub repository</a>.</p>
+      <?php } ?>
 
       <?php
         $params = array( 'orderby'=>'display_name ASC', 'limit'=>-1, 'where'=>'instrument_class.post_title="'. $pod->display('name')  . '"'); 
@@ -92,7 +104,7 @@ woo_post_before();
         if ( $instrument_series->total() > 0 ) {
       ?>
       <h3>Instrument Models</h3>
-      <p>The OOI includes the following instrument models for this instrument type.</p>
+      <p>The OOI includes the following instrument makes and models for this instrument type.  Follow the links below to find out where in the OOI this instrument has been deployed.  You'll also find quick links for each instrument to Data portal, where you can plot and access data.</p>
       <table>
         <tr>
           <th>Series</th>
@@ -112,12 +124,18 @@ woo_post_before();
       </table>
         <?php } //endif empty ?>
 
+      <?php 
+        if ($pod->field('reference_information')) { 
+          echo '<h3>Reference Information</h3>';
+          echo $pod->display('reference_information');
+        } ?>
+
     </div>
 
-    <div class="fourcol-one last">
+    <div class="threecol-one last">
       <?php 
         if ( has_post_thumbnail() ) {
-          echo ooi_image_caption(get_post_thumbnail_id(get_the_ID()),'medium');         
+          echo ooi_image_caption(get_post_thumbnail_id(get_the_ID()),'large');         
         }
       ?>
       <div>
@@ -138,6 +156,9 @@ woo_post_before();
           echo "<p>None</p>";
         } 
         ?>
+        <strong>Access Data</strong><br>
+        <a href="https://ooinet.oceanobservatories.org/data_access/?search=<?= get_the_title()?>" target="_blank" title="Data Catalog" class="woo-sc-button" style="text-transform: none;"><i class="fa fa-database"></i> <?= get_the_title()?> on the Data Portal</a>
+
       </div>
 <!--
       <p>
@@ -145,6 +166,15 @@ woo_post_before();
         <a href="/instruments"  class="woo-sc-button custom">Instrument List &gt;&gt;</a>
       </p>
 -->
+      <?php  
+        $photos = $pod->field('photos');
+        if ( is_array( $photos ) ) {
+          foreach ( $photos as $photo ) {
+            echo ooi_image_caption($photo['ID'],'large');
+          }        
+        }
+      ?>
+
     </div>
     <div class="clear"></div>
       

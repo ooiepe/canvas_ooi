@@ -77,10 +77,33 @@ woo_post_before();
         } //endif empty ?>
     </div>
     <div class="fourcol-one last">
-      <div><p><strong>Typical Units</strong><br>
-        <?php echo get_post_meta( get_the_ID(), 'typical_units', true); ?></p></div>
-      <div><p><strong>Sampling Regime</strong><br>
-        <?php echo get_post_meta( get_the_ID(), 'sampling_regime', true); ?></p></div>
+
+      <div>
+        <p>
+          <strong>Typical Units</strong><br>
+          <?php echo get_post_meta( get_the_ID(), 'typical_units', true); ?>
+        </p>
+      </div>
+
+      <div>
+        <p>
+          <strong>Sampling Regime</strong><br>
+          <?php echo get_post_meta( get_the_ID(), 'sampling_regime', true); ?>
+        </p>
+      </div>
+      
+      <div>
+        <p><strong>Data Product Specification</strong>
+      <?php 
+        $dps = $pod->field('dps');
+        if (is_array($dps)) {
+          echo sprintf( 
+            '<a href="%s" class="woo-sc-button" style="text-transform: none;"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> %s DPS</a>', 
+            esc_url(wp_get_attachment_url($dps['ID'])), 
+            get_the_title());
+        } ?>
+        </p>
+      </div>
 
 <!--
       <p>

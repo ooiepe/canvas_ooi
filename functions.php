@@ -81,7 +81,7 @@ if (!function_exists('ooi_image_caption')) {
 		$image_full_url = $image_full[0];
 		$image_post = get_post($image_id);
 		$image_caption = $image_post->post_excerpt;
-    return sprintf( '<div style="width: 260px" class="wp-caption alignright"><a href="%s">%s</a><p class="wp-caption-text">%s</p></div>', 
+    return sprintf( '<div class="wp-caption alignright"><a href="%s">%s</a><p class="wp-caption-text">%s</p></div>', 
       $image_full_url,
       $image,
       $image_caption);
