@@ -93,7 +93,7 @@ woo_post_before();
       </div>
       
       <div>
-        <p><strong>Data Product Specification</strong>
+        <p><strong>Data Product Specification</strong><br>
       <?php 
         $dps = $pod->field('dps');
         if (is_array($dps)) {
@@ -101,7 +101,9 @@ woo_post_before();
             '<a href="%s" class="woo-sc-button" style="text-transform: none;"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> %s DPS</a>', 
             esc_url(wp_get_attachment_url($dps['ID'])), 
             get_the_title());
-        } ?>
+        } else {
+          echo 'Not Available';
+        }?>
         </p>
       </div>
 
