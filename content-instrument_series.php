@@ -75,13 +75,13 @@ woo_post_before();
         <?php echo $dps; ?>
         </div>
       <?php } ?>
-      
       <?php the_content( __( 'Continue Reading &rarr;', 'woothemes' ) ); ?>
 
     </div>
 
 
     <div class="threecol-one last">
+      <p><em>For more information about this instrument, including its available Data Products, please see the <a href="<?=get_post_meta( get_the_ID(), 'instrument_class.permalink', true)?>"><?=get_post_meta( get_the_ID(), 'instrument_class.display_name', true)?> (<?=get_post_meta( get_the_ID(), 'instrument_class.post_title', true)?>)</a> Instrument Class page.</em></p>
       <?php 
         if ( has_post_thumbnail() ) {
           echo ooi_image_caption(get_post_thumbnail_id(get_the_ID()),'medium');         
