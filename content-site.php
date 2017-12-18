@@ -65,6 +65,12 @@ woo_post_before();
       $pod = pods('site',get_the_ID());
     ?>
     <div class="fourcol-three">
+        <?php 
+        $suspended = $pod->display('suspended');
+        if ( ! empty( $suspended ) ) {
+          echo sprintf('<p style="color:red;font-weight:bold">This site was suspended on: %s.</p>',$suspended);
+        } ?>
+
       <?php the_content( __( 'Continue Reading &rarr;', 'woothemes' ) );    ?> 
       
       <?php  

@@ -87,8 +87,15 @@ woo_post_before();
           <?php foreach ( $sites as $site ): ?>
         <tr>
           <td><?php echo get_post_meta($site['ID'],'legend_key',true);?></td>
-          <td><?php echo sprintf( '<a href="%s">%s</a>', esc_url(get_permalink($site['ID'])), get_post_meta($site['ID'],'site_name',true) );?>
-          <small>(<?php echo get_the_title($site['ID']);?>)</small></td>
+          <td>
+            <?php echo sprintf( '<a href="%s">%s</a>', esc_url(get_permalink($site['ID'])), get_post_meta($site['ID'],'site_name',true) );?>
+            <small>(<?php echo get_the_title($site['ID']);?>)</small>
+            <?php $suspended = get_post_meta($site['ID'],'suspended',true);
+              if ($suspended) {
+                echo sprintf('<p style="color:red;font-weight:bold">Suspended on: %s</p>',$suspended); 
+              }
+              ?>
+          </td>
           <td style="text-align:right"><?php 
             $depth = get_post_meta($site['ID'],'depth',true);
             if ($depth) echo number_format($depth) . ' meters';?></td>

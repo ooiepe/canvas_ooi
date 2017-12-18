@@ -103,7 +103,7 @@ woo_post_before();
         $instrument_series = pods('instrument_series', $params);
         if ( $instrument_series->total() > 0 ) {
       ?>
-      <h3>Instrument Models</h3>
+      <h3>Instrument Models &amp; Deployed Locations</h3>
       <p>The OOI includes the following instrument makes and models for this instrument type.  Follow the links below to find out where in the OOI this instrument has been deployed.  You'll also find quick links for each instrument to Data portal, where you can plot and access data.</p>
       <table>
         <tr>
