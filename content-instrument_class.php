@@ -72,30 +72,36 @@ woo_post_before();
         if ( ! empty( $data_products ) ) {
         ?>
       <p>This instrument measures the following data products.  Select a data product's name to learn more.</p>
-      <ul>
+      <table>
+        <tr>
+          <th>Data Product</th>
+          <th>Code</th>
+          <th>DPS</th>
+        </thead>
         <?php foreach ($data_products as $data_product) : ?>
-        <li>
-          <?php echo sprintf( '<a href="%s">%s</a>', 
+        <tr>
+          <td><?php echo sprintf( '<a href="%s">%s</a>', 
             esc_url(get_permalink($data_product['ID'])), 
-            get_post_meta($data_product['ID'],'data_product_name',true) );?>
-          <small>(<?php echo get_the_title($data_product['ID']);?>)</small>
-          <?php 
+            get_post_meta($data_product['ID'],'data_product_name',true) );?></td>
+          <td><?php echo get_the_title($data_product['ID']);?></td>
+          <td><?php 
             $dps = get_post_meta( $data_product['ID'], 'dps', true);
             if (is_array($dps)) {
               echo sprintf( 
-                '<small><a href="%s">DPS <i class="fa fa-file-pdf-o" aria-hidden="true"></i></a></small>',
+                '<a href="%s">DPS <i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>',
                 esc_url(wp_get_attachment_url($dps['ID'])) );
-            } ?>
-        </li>
+            } ?></td>
+        </tr>
         <?php endforeach; ?>
-      </ul>
+      </table>
       <?php 
         } else {
           echo "<p>No data products</p>";
         } //endif empty ?>
 
       <?php if ($pod->field('ion_functions_link')) { ?>
-      <p>The algorithm code used to generate this instrument's data products is also available in the <a href="<?php echo $pod->display('ion_functions_link')?>">ion-functions GitHub repository</a>.</p>
+      <p>The algorithm code used to generate data products for this instrument is also available in the ion-functions GitHub repository.</p>
+      <a href="<?php echo $pod->display('ion_functions_link')?>" target="_blank" title="ion-functions GitHub repository" class="woo-sc-button" style="text-transform: none;"><i class="fa fa-code"></i> Algorithm Code</a>
       <?php } ?>
 
       <?php

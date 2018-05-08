@@ -109,15 +109,23 @@ woo_post_before();
         <p><strong><?php echo get_the_title(); ?> Array Map</strong>
         <?php echo ooi_image( get_post_meta( get_the_ID(), 'array_map.ID', true), 'medium');?></p>
       </div>
+      <div>
+        <p><strong>Instrument Table</strong>
+        <?php echo ooi_image( get_post_meta( get_the_ID(), 'instrument_table.ID', true), 'medium');?></p>
+      </div>
+      <div>
+        <a href="<?php echo wp_get_attachment_url( get_post_meta( get_the_ID(), 'quicklook.ID', true)) ?>" target="_blank" title="Quicklook Brochure" class="woo-sc-button" style="text-transform: none;"><i class="fa fa-newspaper-o"></i> Quicklook Brochure</a>
+      </div>
 <!--
       <div><p><strong>Approximate Water Depth</strong><br>
         <?php echo get_post_meta( get_the_ID(), 'depth', true); ?></p></div>
       <div><p><strong>Central Mooring Location</strong><br>
         <?php echo get_post_meta( get_the_ID(), 'latitude', true); ?>, 
         <?php echo get_post_meta( get_the_ID(), 'longitude', true); ?></p></div>
--->
       <div><p><strong>Research Setting</strong><br>
-        <?php echo get_post_meta( get_the_ID(), 'setting', true); ?></p></div>
+        <?php echo get_post_meta( get_the_ID(), 'setting', true); ?></p>
+      </div>
+-->
       <div><strong>Research Themes</strong>
         <?php 
         $themes = $pod->field('science_themes');

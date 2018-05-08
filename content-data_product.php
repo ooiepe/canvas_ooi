@@ -26,6 +26,19 @@ if ( ! is_single() ) {
 
 $page_link_args = apply_filters( 'woothemes_pagelinks_args', array( 'before' => '<div class="page-link">' . __( 'Pages:', 'woothemes' ), 'after' => '</div>' ) );
 
+// Breadcrumb
+if ( is_singular() ) {
+?>
+  <div class="breadcrumb breadcrumbs woo-breadcrumbs">
+    <div class="breadcrumb-trail">
+      <a href="/data-products/" title="Data Products" rel="home" class="trail-begin">Data Products</a>
+      <span class="sep">›</span>
+      <span class="trail-end"><?=get_post_meta( get_the_ID(), 'data_product_name', true)?></span>
+    </div>
+  </div>
+<?php
+}
+
 // Start Generating Content
 woo_post_before();
 ?>
@@ -105,6 +118,13 @@ woo_post_before();
           echo 'Not Available';
         }?>
         </p>
+      </div>
+
+      <div>
+      <?php if ($pod->field('ion_functions_link')) { ?>
+        <p><strong>Algorithm Link</strong><br>
+        <a href="<?php echo $pod->display('ion_functions_link')?>" target="_blank" title="ion-functions GitHub repository" class="woo-sc-button" style="text-transform: none;"><i class="fa fa-code"></i> Algorithm Code</a></p>
+      <?php } ?>
       </div>
 
 <!--
