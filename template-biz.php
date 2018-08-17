@@ -49,10 +49,10 @@ $page_template = woo_get_page_template();
 <div class="fourcol-one last">
   
   <div>
-    <a href="/streaming-underwater-video/"><img src="http://oceanobservatories.org/wp-content/uploads/2016/01/ooi_axial_vid_thumb_v1.jpg" title="Live Video from Axial Seamount" width="220" height="124"></a>
+    <a href="http://oceanobservatories.org/2018/06/visions-18-cruise-underway/"><img src="http://oceanobservatories.org/wp-content/uploads/2018/06/v18-banner_Thumnail.jpg" title="VISIONS'18" width="220" height="127"></a>
   </div>
   <div>
-    <a href="http://oceanobservatories.org/2017/07/visions-17-cruise-underway/"><img src="http://oceanobservatories.org/wp-content/uploads/2010/05/visions17-thumbnail.png" title="VISIONS'17" width="220" height="127"></a>
+    <a href="/streaming-underwater-video/"><img src="http://oceanobservatories.org/wp-content/uploads/2016/01/ooi_axial_vid_thumb_v1.jpg" title="Live Video from Axial Seamount" width="220" height="124"></a>
   </div>
   <div>
     <a href="http://oceanobservatories.org/introduction-to-the-ooi-website/"><img src="http://oceanobservatories.org/wp-content/uploads/2010/05/Homepage-Intro-Ad.jpg" title="Introduction to the OOI Website" width="220" height="152"></a>
